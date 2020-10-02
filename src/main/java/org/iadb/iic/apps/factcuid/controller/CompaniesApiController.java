@@ -60,6 +60,7 @@ public class CompaniesApiController implements CompaniesApi {
 
 	@Override
 	public ResponseEntity<Void> deleteCompany(Long companyId, String apiKey) {
+		cas.deleteCompany(companyId);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
@@ -67,7 +68,6 @@ public class CompaniesApiController implements CompaniesApi {
 	public ResponseEntity<List<Company>> findCompaniessByParams( @NotNull @Valid String portfolio, @Valid Boolean isPDExpired) {
 		List<Company> companyList= new ArrayList<>();
 		companyList= cas.getCompanyListByParams(portfolio, isPDExpired);
-		/* companyList= jdbcTemplate.query*/
 		String accept = request.getHeader("Accept");
 			
 		if (accept != null && accept.contains("application/json")) {
@@ -104,17 +104,18 @@ public class CompaniesApiController implements CompaniesApi {
 
 	@Override
 	public ResponseEntity<List<Company>> getCompanyList() {
-		return null;
+		return new ResponseEntity<List<Company>>(cas.getAllCompanies(), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Void> partialUpdateCompany(Long companyId, @Valid Company company) {
-		return null;
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Void> updateCompany(@Valid Company company) {
-		return null;
+		cas.updateCompany(company);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 }

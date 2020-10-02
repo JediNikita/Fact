@@ -1,10 +1,10 @@
-package com.yodaplus.yamltest;
+package org.iadb.iic.apps.factcuid.main;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class YamlTestApplicationTests {
+class FactCUIDApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import org.threeten.bp.LocalDate;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -20,7 +22,7 @@ import javax.validation.constraints.*;
 
 
 
-
+@Entity
 public class Company   {
   @JsonProperty("id")
   private Long id = null;

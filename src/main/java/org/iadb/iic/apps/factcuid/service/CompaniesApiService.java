@@ -18,4 +18,10 @@ public interface CompaniesApiService {
 	public Company getCompanyById(Long companyId) ;
 
 	public void addCompany(@Valid Company company);
+
+	public void deleteCompany(Long companyId);
+
+	public List<Company> getAllCompanies();
+
+	public void updateCompany(@Valid Company company);
 }

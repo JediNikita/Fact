@@ -1,9 +1,16 @@
 package org.iadb.iic.apps.factcuid.dao;
 
-import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import org.iadb.iic.apps.factcuid.dao.mapper.CompanyResultSetExtractor;
+import org.iadb.iic.apps.factcuid.dao.mapper.CompanyRowMapper;
 import org.iadb.iic.apps.factcuid.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class CompaniesDaoImpl implements CompaniesDao {
@@ -21,9 +28,44 @@ public class CompaniesDaoImpl implements CompaniesDao {
 
 
 	@Override
-	public void getCompanyById(Long companyId) {
+	public Company getCompanyById(Long companyId) {
 		String sql= "SELECT C FROM COMPANY C WHERE C.COMPANY_ID=?;";
-		Company comp= jdbcTemplate.query
+		Company comp= (Company) jdbcTemplate.queryForObject(sql, new Object[] {companyId}, BeanPropertyRowMapper.newInstance(Company.class));
+		System.out.println(comp);
+		return comp;
 	}
 
+
+	@Override
+	public List<Company> getCompanyListByParams(@NotNull @Valid String portfolio, @Valid Boolean isPDExpired) {
+		List<Company> companyList= new ArrayList<>();
+		String sql= "SELECT C FROM COMPANY C WHERE C.PORTFOLIO=? AND C.ISPDEXPIRED=?;";
+		companyList= jdbcTemplate.queryForList(sql, Company.class, new Object[] {portfolio, isPDExpired});
+		return companyList;
+	}
+
+
+	@Override
+	public void deleteCompany(Long companyId) {
+		String sql= "DELETE C FROM COMPANY WHERE C.COMPANYID=?;";
+		int flag= jdbcTemplate.update(sql, new Object[] {companyId});
+		System.out.println(flag);
+	}
+
+
+	@Override
+	public List<Company> getAllCompanies() {
+		String sql= "SELECT * FROM COMPANY;";
+		List<Company> companyList= new ArrayList<>();
+		companyList= jdbcTemplate.queryForList(sql, Company.class);
+		return companyList;
+	}
+
+
+	@Override
+	public void updateCompany(@Valid Company company) {
+		
+	}
+
+	
 }

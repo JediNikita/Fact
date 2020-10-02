@@ -3,6 +3,7 @@ package org.iadb.iic.apps.factcuid.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.persistence.Entity;
 import javax.validation.Valid;
 
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * FinancialStatement
  */
 @Validated
-
+@Entity
 public class FinancialStatement   {
   @JsonProperty("id")
   private Long id = null;
