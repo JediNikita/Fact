@@ -7,8 +7,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.iadb.iic.apps.factcuid.model.Facility;
+import org.iadb.iic.apps.factcuid.service.FacilityApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,11 +31,12 @@ import io.swagger.annotations.ApiParam;
 public class FacilitiesApiController implements FacilitiesApi {
 
     private static final Logger log = LoggerFactory.getLogger(FacilitiesApiController.class);
-
     private final ObjectMapper objectMapper;
-
     private final HttpServletRequest request;
 
+    @Autowired
+    private FacilityApiService fas;
+    
     @org.springframework.beans.factory.annotation.Autowired
     public FacilitiesApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
@@ -43,15 +46,7 @@ public class FacilitiesApiController implements FacilitiesApi {
     @Override
 	public ResponseEntity<Facility> findFacilityRatingByIdAndPeriod(@ApiParam(value = "FacilityId",required=true) @PathVariable("facilityId") String facilityId,@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo) {
         String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/xml")) {
-            try {
-                return new ResponseEntity<Facility>(objectMapper.readValue("<Facility>  <id>123456789</id>  <expectedLossDefault>1.3579</expectedLossDefault>  <finalRating>aeiou</finalRating>  <expectedLossGrade>1.3579</expectedLossGrade>  <ratingDate>2000-01-23</ratingDate>  <yyyymm>aeiou</yyyymm></Facility>", Facility.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/xml", e);
-                return new ResponseEntity<Facility>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
+        Facility facility= fas.findFacilityRatingByIdAndPeriod(facilityId, periodo);
         if (accept != null && accept.contains("application/json")) {
             try {
                 return new ResponseEntity<Facility>(objectMapper.readValue("{  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}", Facility.class), HttpStatus.NOT_IMPLEMENTED);
@@ -67,15 +62,7 @@ public class FacilitiesApiController implements FacilitiesApi {
     @Override
 	public ResponseEntity<List<Facility>> findFacilityRatingsByPeriod(@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo) {
         String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/xml")) {
-            try {
-                return new ResponseEntity<List<Facility>>(objectMapper.readValue("<Facility>  <id>123456789</id>  <expectedLossDefault>1.3579</expectedLossDefault>  <finalRating>aeiou</finalRating>  <expectedLossGrade>1.3579</expectedLossGrade>  <ratingDate>2000-01-23</ratingDate>  <yyyymm>aeiou</yyyymm></Facility>", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/xml", e);
-                return new ResponseEntity<List<Facility>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
+        List<Facility> facilityList= fas.findFacilityRatingPeriod(periodo);
         if (accept != null && accept.contains("application/json")) {
             try {
                 return new ResponseEntity<List<Facility>>(objectMapper.readValue("[ {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}, {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
@@ -91,6 +78,7 @@ public class FacilitiesApiController implements FacilitiesApi {
     @Override
 	public ResponseEntity<List<Facility>> getFacilityRatings() {
         String accept = request.getHeader("Accept");
+        List<Facility> facilityList= fas.findFacilityRatings();
         if (accept != null && accept.contains("application/json")) {
             try {
                 return new ResponseEntity<List<Facility>>(objectMapper.readValue("[ {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}, {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375} ]", List.class), HttpStatus.NOT_IMPLEMENTED);

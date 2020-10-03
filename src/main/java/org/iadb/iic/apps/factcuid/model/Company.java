@@ -9,8 +9,6 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import org.threeten.bp.LocalDate;
 import org.springframework.validation.annotation.Validated;
-
-import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -18,837 +16,874 @@ import javax.validation.constraints.*;
  * Company
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-09-30T13:53:20.150Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-10-03T11:06:16.982Z")
 
 
 
-@Entity
+
 public class Company   {
-  @JsonProperty("id")
-  private Long id = null;
+	@JsonProperty("id")
+	private Long id = null;
 
-  @JsonProperty("companyIdNumber")
-  private Long companyIdNumber = null;
+	@JsonProperty("idNumber")
+	private Long idNumber = null;
 
-  @JsonProperty("companyName")
-  private String companyName = null;
+	@JsonProperty("elementId")
+	private Long elementId = null;
 
-  @JsonProperty("domicileCountryISO")
-  private String domicileCountryISO = null;
+	@JsonProperty("userGroupId")
+	private Long userGroupId = null;
 
-  /**
-   * Active/Inactive Portfolio
-   */
-  public enum PortfolioEnum {
-    ACTIVE("active"),
-    
-    INACTIVE("inactive");
+	@JsonProperty("groupId")
+	private Long groupId = null;
 
-    private String value;
+	@JsonProperty("name")
+	private String name = null;
 
-    PortfolioEnum(String value) {
-      this.value = value;
-    }
+	@JsonProperty("domicileCountryISO")
+	private String domicileCountryISO = null;
 
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
+	/**
+	 * Active/Inactive Portfolio
+	 */
+	public enum PortfolioEnum {
+		ACTIVE("active"),
 
-    @JsonCreator
-    public static PortfolioEnum fromValue(String text) {
-      for (PortfolioEnum b : PortfolioEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
+		INACTIVE("inactive");
 
-  @JsonProperty("portfolio")
-  private PortfolioEnum portfolio = null;
+		private String value;
 
-  @JsonProperty("lastPdRating")
-  private BigDecimal lastPdRating = null;
+		PortfolioEnum(String value) {
+			this.value = value;
+		}
 
-  @JsonProperty("companyType")
-  private String companyType = null;
+		@Override
+		@JsonValue
+		public String toString() {
+			return String.valueOf(value);
+		}
 
-  @JsonProperty("companyModel")
-  private String companyModel = null;
+		@JsonCreator
+		public static PortfolioEnum fromValue(String text) {
+			for (PortfolioEnum b : PortfolioEnum.values()) {
+				if (String.valueOf(b.value).equals(text)) {
+					return b;
+				}
+			}
+			return null;
+		}
+	}
 
-  @JsonProperty("companySector")
-  private String companySector = null;
+	@JsonProperty("portfolio")
+	private PortfolioEnum portfolio = null;
 
-  @JsonProperty("companySpreadType")
-  private String companySpreadType = null;
+	@JsonProperty("type")
+	private String type = null;
 
-  @JsonProperty("companyLockMask")
-  private Integer companyLockMask = null;
+	@JsonProperty("companyModel")
+	private String companyModel = null;
 
-  @JsonProperty("companyCreationDate")
-  private LocalDate companyCreationDate = null;
+	@JsonProperty("bankScopeId")
+	private Integer bankScopeId = null;
 
-  @JsonProperty("companyCreationUser")
-  private Integer companyCreationUser = null;
+	@JsonProperty("spreadType")
+	private String spreadType = null;
 
-  @JsonProperty("companyModificationDate")
-  private LocalDate companyModificationDate = null;
+	@JsonProperty("analystUserId")
+	private Integer analystUserId = null;
 
-  @JsonProperty("companyModificationUser")
-  private Integer companyModificationUser = null;
+	@JsonProperty("lockMask")
+	private Integer lockMask = null; 
 
-  @JsonProperty("approvedPD")
-  private Integer approvedPD = null;
+	@JsonProperty("creationDate")
+	private LocalDate creationDate = null;
 
-  @JsonProperty("currentPercForPdGrade")
-  private Integer currentPercForPdGrade = null;
+	@JsonProperty("creationUser")
+	private Integer creationUser = null;
 
-  @JsonProperty("pdInProcess")
-  private Boolean pdInProcess = null;
+	@JsonProperty("modificationDate")
+	private LocalDate modificationDate = null;
 
-  @JsonProperty("factPdStatus")
-  private Boolean factPdStatus = null;
+	@JsonProperty("modificationUser")
+	private Integer modificationUser = null;
 
-  @JsonProperty("isExpired")
-  private Boolean isExpired = null;
 
-  @JsonProperty("expirationDate")
-  private LocalDate expirationDate = null;
+	@JsonProperty("sector")
+	private String sector = null;
 
-  @JsonProperty("approvedDateTime")
-  private LocalDate approvedDateTime = null;
+	@JsonProperty("workflowStatus")
+	private Integer workflowStatus = null;
 
-  @JsonProperty("totalAssets")
-  private BigDecimal totalAssets = null;
+	@JsonProperty("statementKey")
+	private String statementKey = null;
 
-  @JsonProperty("netIncome")
-  private BigDecimal netIncome = null;
+	@JsonProperty("financeSector")
+	private String financeSector = null;
 
-  @JsonProperty("totalEquity")
-  private BigDecimal totalEquity = null;
+	@JsonProperty("financeSubSector")
+	private String financeSubSector = null;
 
-  @JsonProperty("annualRevenue")
-  private BigDecimal annualRevenue = null;
+	@JsonProperty("lastPDRating")
+	private BigDecimal lastPDRating = null;
 
-  @JsonProperty("year")
-  private Integer year = null;
+	@JsonProperty("layoutFormat")
+	private String layoutFormat = null;
 
-  @JsonProperty("orgUniqueId")
-  private Integer orgUniqueId = null;
+	@JsonProperty("hasArchives")
+	private Integer hasArchives = null;
 
-  @JsonProperty("economicGroupName")
-  private String economicGroupName = null;
+	@JsonProperty("hasApprovedArchived")
+	private Integer hasApprovedArchived = null;
 
-  @JsonProperty("riskSectorName")
-  private String riskSectorName = null;
+	@JsonProperty("fileToImport")
+	private String fileToImport = null;
 
-  public Company id(Long id) {
-    this.id = id;
-    return this;
-  }
+	@JsonProperty("govtSupportType")
+	private String govtSupportType = null;
 
-  /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(value = "")
+	@JsonProperty("hasGovtSupport")
+	private String hasGovtSupport = null;
 
+	@JsonProperty("operationCountryISO")
+	private Integer operationCountryISO = null;
 
-  public Long getId() {
-    return id;
-  }
+	@JsonProperty("constructionCountryISO")
+	private Integer constructionCountryISO = null;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public Company id(Long id) {
+		this.id = id;
+		return this;
+	}
 
-  public Company companyIdNumber(Long companyIdNumber) {
-    this.companyIdNumber = companyIdNumber;
-    return this;
-  }
+	/**
+	 * Get id
+	 * @return id
+	 **/
+	@ApiModelProperty(value = "")
 
-  /**
-   * Get companyIdNumber
-   * @return companyIdNumber
-  **/
-  @ApiModelProperty(value = "")
 
+	public Long getId() {
+		return id;
+	}
 
-  public Long getCompanyIdNumber() {
-    return companyIdNumber;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public void setCompanyIdNumber(Long companyIdNumber) {
-    this.companyIdNumber = companyIdNumber;
-  }
+	public Company idNumber(Long idNumber) {
+		this.idNumber = idNumber;
+		return this;
+	}
 
-  public Company companyName(String companyName) {
-    this.companyName = companyName;
-    return this;
-  }
+	/**
+	 * Get idNumber
+	 * @return idNumber
+	 **/
+	@ApiModelProperty(value = "")
 
-  /**
-   * Get companyName
-   * @return companyName
-  **/
-  @ApiModelProperty(value = "")
 
+	public Long getIdNumber() {
+		return idNumber;
+	}
 
-  public String getCompanyName() {
-    return companyName;
-  }
+	public void setIdNumber(Long idNumber) {
+		this.idNumber = idNumber;
+	}
 
-  public void setCompanyName(String companyName) {
-    this.companyName = companyName;
-  }
+	public Company elementId(Long elementId) {
+		this.elementId = elementId;
+		return this;
+	}
 
-  public Company domicileCountryISO(String domicileCountryISO) {
-    this.domicileCountryISO = domicileCountryISO;
-    return this;
-  }
+	/**
+	 * Get elementId
+	 * @return elementId
+	 **/
+	@ApiModelProperty(value = "")
 
-  /**
-   * Get domicileCountryISO
-   * @return domicileCountryISO
-  **/
-  @ApiModelProperty(value = "")
 
+	public Long getElementId() {
+		return elementId;
+	}
 
-  public String getDomicileCountryISO() {
-    return domicileCountryISO;
-  }
+	public void setElementId(Long elementId) {
+		this.elementId = elementId;
+	}
 
-  public void setDomicileCountryISO(String domicileCountryISO) {
-    this.domicileCountryISO = domicileCountryISO;
-  }
+	public Company userGroupId(Long userGroupId) {
+		this.userGroupId = userGroupId;
+		return this;
+	}
 
-  public Company portfolio(PortfolioEnum portfolio) {
-    this.portfolio = portfolio;
-    return this;
-  }
+	/**
+	 * Get userGroupId
+	 * @return userGroupId
+	 **/
+	@ApiModelProperty(value = "")
 
-  /**
-   * Active/Inactive Portfolio
-   * @return portfolio
-  **/
-  @ApiModelProperty(value = "Active/Inactive Portfolio")
 
+	public Long getUserGroupId() {
+		return userGroupId;
+	}
 
-  public PortfolioEnum getPortfolio() {
-    return portfolio;
-  }
+	public void setUserGroupId(Long userGroupId) {
+		this.userGroupId = userGroupId;
+	}
 
-  public void setPortfolio(PortfolioEnum portfolio) {
-    this.portfolio = portfolio;
-  }
+	public Company groupId(Long groupId) {
+		this.groupId = groupId;
+		return this;
+	}
 
-  public Company lastPdRating(BigDecimal lastPdRating) {
-    this.lastPdRating = lastPdRating;
-    return this;
-  }
+	/**
+	 * Get groupId
+	 * @return groupId
+	 **/
+	@ApiModelProperty(value = "")
 
-  /**
-   * Last probability of default rating of the company
-   * @return lastPdRating
-  **/
-  @ApiModelProperty(value = "Last probability of default rating of the company")
 
-  @Valid
+	public Long getGroupId() {
+		return groupId;
+	}
 
-  public BigDecimal getLastPdRating() {
-    return lastPdRating;
-  }
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
+	}
 
-  public void setLastPdRating(BigDecimal lastPdRating) {
-    this.lastPdRating = lastPdRating;
-  }
+	public Company name(String name) {
+		this.name = name;
+		return this;
+	}
 
-  public Company companyType(String companyType) {
-    this.companyType = companyType;
-    return this;
-  }
+	/**
+	 * Get name
+	 * @return name
+	 **/
+	@ApiModelProperty(value = "")
 
-  /**
-   * Get companyType
-   * @return companyType
-  **/
-  @ApiModelProperty(value = "")
 
+	public String getName() {
+		return name;
+	}
 
-  public String getCompanyType() {
-    return companyType;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setCompanyType(String companyType) {
-    this.companyType = companyType;
-  }
+	public Company domicileCountryISO(String domicileCountryISO) {
+		this.domicileCountryISO = domicileCountryISO;
+		return this;
+	}
 
-  public Company companyModel(String companyModel) {
-    this.companyModel = companyModel;
-    return this;
-  }
+	/**
+	 * Get domicileCountryISO
+	 * @return domicileCountryISO
+	 **/
+	@ApiModelProperty(value = "")
 
-  /**
-   * Get companyModel
-   * @return companyModel
-  **/
-  @ApiModelProperty(value = "")
 
-
-  public String getCompanyModel() {
-    return companyModel;
-  }
+	public String getDomicileCountryISO() {
+		return domicileCountryISO;
+	}
 
-  public void setCompanyModel(String companyModel) {
-    this.companyModel = companyModel;
-  }
+	public void setDomicileCountryISO(String domicileCountryISO) {
+		this.domicileCountryISO = domicileCountryISO;
+	}
 
-  public Company companySector(String companySector) {
-    this.companySector = companySector;
-    return this;
-  }
+	public Company portfolio(PortfolioEnum portfolio) {
+		this.portfolio = portfolio;
+		return this;
+	}
 
-  /**
-   * Get companySector
-   * @return companySector
-  **/
-  @ApiModelProperty(value = "")
+	/**
+	 * Active/Inactive Portfolio
+	 * @return portfolio
+	 **/
+	@ApiModelProperty(value = "Active/Inactive Portfolio")
 
-
-  public String getCompanySector() {
-    return companySector;
-  }
 
-  public void setCompanySector(String companySector) {
-    this.companySector = companySector;
-  }
+	public PortfolioEnum getPortfolio() {
+		return portfolio;
+	}
 
-  public Company companySpreadType(String companySpreadType) {
-    this.companySpreadType = companySpreadType;
-    return this;
-  }
+	public void setPortfolio(PortfolioEnum portfolio) {
+		this.portfolio = portfolio;
+	}
 
-  /**
-   * Get companySpreadType
-   * @return companySpreadType
-  **/
-  @ApiModelProperty(value = "")
+	public Company type(String type) {
+		this.type = type;
+		return this;
+	}
 
-
-  public String getCompanySpreadType() {
-    return companySpreadType;
-  }
+	/**
+	 * Get type
+	 * @return type
+	 **/
+	@ApiModelProperty(value = "")
 
-  public void setCompanySpreadType(String companySpreadType) {
-    this.companySpreadType = companySpreadType;
-  }
 
-  public Company companyLockMask(Integer companyLockMask) {
-    this.companyLockMask = companyLockMask;
-    return this;
-  }
+	public String getType() {
+		return type;
+	}
 
-  /**
-   * internal fact field defaulted to a constant value
-   * @return companyLockMask
-  **/
-  @ApiModelProperty(value = "internal fact field defaulted to a constant value")
+	public void setType(String type) {
+		this.type = type;
+	}
 
-
-  public Integer getCompanyLockMask() {
-    return companyLockMask;
-  }
+	public Company companyModel(String companyModel) {
+		this.companyModel = companyModel;
+		return this;
+	}
 
-  public void setCompanyLockMask(Integer companyLockMask) {
-    this.companyLockMask = companyLockMask;
-  }
+	/**
+	 * Get companyModel
+	 * @return companyModel
+	 **/
+	@ApiModelProperty(value = "")
 
-  public Company companyCreationDate(LocalDate companyCreationDate) {
-    this.companyCreationDate = companyCreationDate;
-    return this;
-  }
 
-  /**
-   * date of creation
-   * @return companyCreationDate
-  **/
-  @ApiModelProperty(value = "date of creation")
+	public String getCompanyModel() {
+		return companyModel;
+	}
 
-  @Valid
-
-  public LocalDate getCompanyCreationDate() {
-    return companyCreationDate;
-  }
+	public void setCompanyModel(String companyModel) {
+		this.companyModel = companyModel;
+	}
 
-  public void setCompanyCreationDate(LocalDate companyCreationDate) {
-    this.companyCreationDate = companyCreationDate;
-  }
+	public Company bankScopeId(Integer bankScopeId) {
+		this.bankScopeId = bankScopeId;
+		return this;
+	}
 
-  public Company companyCreationUser(Integer companyCreationUser) {
-    this.companyCreationUser = companyCreationUser;
-    return this;
-  }
+	/**
+	 * Get bankScopeId
+	 * @return bankScopeId
+	 **/
+	@ApiModelProperty(value = "")
 
-  /**
-   * fact user id
-   * @return companyCreationUser
-  **/
-  @ApiModelProperty(value = "fact user id")
-
-
-  public Integer getCompanyCreationUser() {
-    return companyCreationUser;
-  }
 
-  public void setCompanyCreationUser(Integer companyCreationUser) {
-    this.companyCreationUser = companyCreationUser;
-  }
+	public Integer getBankScopeId() {
+		return bankScopeId;
+	}
 
-  public Company companyModificationDate(LocalDate companyModificationDate) {
-    this.companyModificationDate = companyModificationDate;
-    return this;
-  }
+	public void setBankScopeId(Integer bankScopeId) {
+		this.bankScopeId = bankScopeId;
+	}
 
-  /**
-   * date of modification
-   * @return companyModificationDate
-  **/
-  @ApiModelProperty(value = "date of modification")
-
-  @Valid
+	public Company spreadType(String spreadType) {
+		this.spreadType = spreadType;
+		return this;
+	}
 
-  public LocalDate getCompanyModificationDate() {
-    return companyModificationDate;
-  }
+	/**
+	 * Get spreadType
+	 * @return spreadType
+	 **/
+	@ApiModelProperty(value = "")
 
-  public void setCompanyModificationDate(LocalDate companyModificationDate) {
-    this.companyModificationDate = companyModificationDate;
-  }
 
-  public Company companyModificationUser(Integer companyModificationUser) {
-    this.companyModificationUser = companyModificationUser;
-    return this;
-  }
+	public String getSpreadType() {
+		return spreadType;
+	}
 
-  /**
-   * fact user id
-   * @return companyModificationUser
-  **/
-  @ApiModelProperty(value = "fact user id")
-
+	public void setSpreadType(String spreadType) {
+		this.spreadType = spreadType;
+	}
 
-  public Integer getCompanyModificationUser() {
-    return companyModificationUser;
-  }
+	public Company analystUserId(Integer analystUserId) {
+		this.analystUserId = analystUserId;
+		return this;
+	}
 
-  public void setCompanyModificationUser(Integer companyModificationUser) {
-    this.companyModificationUser = companyModificationUser;
-  }
+	/**
+	 * Get analystUserId
+	 * @return analystUserId
+	 **/
+	@ApiModelProperty(value = "")
 
-  public Company approvedPD(Integer approvedPD) {
-    this.approvedPD = approvedPD;
-    return this;
-  }
 
-  /**
-   * PD value post rating workflow completion
-   * @return approvedPD
-  **/
-  @ApiModelProperty(value = "PD value post rating workflow completion")
-
+	public Integer getAnalystUserId() {
+		return analystUserId;
+	}
 
-  public Integer getApprovedPD() {
-    return approvedPD;
-  }
+	public void setAnalystUserId(Integer analystUserId) {
+		this.analystUserId = analystUserId;
+	}
 
-  public void setApprovedPD(Integer approvedPD) {
-    this.approvedPD = approvedPD;
-  }
+	public Company creationDate(LocalDate creationDate) {
+		this.creationDate = creationDate;
+		return this;
+	}
 
-  public Company currentPercForPdGrade(Integer currentPercForPdGrade) {
-    this.currentPercForPdGrade = currentPercForPdGrade;
-    return this;
-  }
+	/**
+	 * date of creation
+	 * @return creationDate
+	 **/
+	@ApiModelProperty(value = "date of creation")
 
-  /**
-   * numeric equivalent to pd calculated as per metric provided by S&P
-   * @return currentPercForPdGrade
-  **/
-  @ApiModelProperty(value = "numeric equivalent to pd calculated as per metric provided by S&P")
-
-
-  public Integer getCurrentPercForPdGrade() {
-    return currentPercForPdGrade;
-  }
+	@Valid
 
-  public void setCurrentPercForPdGrade(Integer currentPercForPdGrade) {
-    this.currentPercForPdGrade = currentPercForPdGrade;
-  }
+	public LocalDate getCreationDate() {
+		return creationDate;
+	}
 
-  public Company pdInProcess(Boolean pdInProcess) {
-    this.pdInProcess = pdInProcess;
-    return this;
-  }
+	public void setCreationDate(LocalDate creationDate) {
+		this.creationDate = creationDate;
+	}
 
-  /**
-   * whether pd not yet approved but in process
-   * @return pdInProcess
-  **/
-  @ApiModelProperty(value = "whether pd not yet approved but in process")
-
-
-  public Boolean isPdInProcess() {
-    return pdInProcess;
-  }
+	public Company creationUser(Integer creationUser) {
+		this.creationUser = creationUser;
+		return this;
+	}
 
-  public void setPdInProcess(Boolean pdInProcess) {
-    this.pdInProcess = pdInProcess;
-  }
+	/**
+	 * fact user id
+	 * @return creationUser
+	 **/
+	@ApiModelProperty(value = "fact user id")
 
-  public Company factPdStatus(Boolean factPdStatus) {
-    this.factPdStatus = factPdStatus;
-    return this;
-  }
 
-  /**
-   * whether any changes in pd
-   * @return factPdStatus
-  **/
-  @ApiModelProperty(value = "whether any changes in pd")
-
-
-  public Boolean isFactPdStatus() {
-    return factPdStatus;
-  }
-
-  public void setFactPdStatus(Boolean factPdStatus) {
-    this.factPdStatus = factPdStatus;
-  }
-
-  public Company isExpired(Boolean isExpired) {
-    this.isExpired = isExpired;
-    return this;
-  }
+	public Integer getCreationUser() {
+		return creationUser;
+	}
 
-  /**
-   * flag to mark expired PD
-   * @return isExpired
-  **/
-  @ApiModelProperty(value = "flag to mark expired PD")
-
-
-  public Boolean isIsExpired() {
-    return isExpired;
-  }
-
-  public void setIsExpired(Boolean isExpired) {
-    this.isExpired = isExpired;
-  }
-
-  public Company expirationDate(LocalDate expirationDate) {
-    this.expirationDate = expirationDate;
-    return this;
-  }
-
-  /**
-   * PD expiration date
-   * @return expirationDate
-  **/
-  @ApiModelProperty(value = "PD expiration date")
-
-  @Valid
-
-  public LocalDate getExpirationDate() {
-    return expirationDate;
-  }
-
-  public void setExpirationDate(LocalDate expirationDate) {
-    this.expirationDate = expirationDate;
-  }
-
-  public Company approvedDateTime(LocalDate approvedDateTime) {
-    this.approvedDateTime = approvedDateTime;
-    return this;
-  }
-
-  /**
-   * PD workflow approval date time
-   * @return approvedDateTime
-  **/
-  @ApiModelProperty(value = "PD workflow approval date time")
-
-  @Valid
-
-  public LocalDate getApprovedDateTime() {
-    return approvedDateTime;
-  }
-
-  public void setApprovedDateTime(LocalDate approvedDateTime) {
-    this.approvedDateTime = approvedDateTime;
-  }
-
-  public Company totalAssets(BigDecimal totalAssets) {
-    this.totalAssets = totalAssets;
-    return this;
-  }
-
-  /**
-   * total assets of the company from the statement used to generate the PD
-   * @return totalAssets
-  **/
-  @ApiModelProperty(value = "total assets of the company from the statement used to generate the PD")
-
-  @Valid
-
-  public BigDecimal getTotalAssets() {
-    return totalAssets;
-  }
-
-  public void setTotalAssets(BigDecimal totalAssets) {
-    this.totalAssets = totalAssets;
-  }
-
-  public Company netIncome(BigDecimal netIncome) {
-    this.netIncome = netIncome;
-    return this;
-  }
-
-  /**
-   * netIncome of the company from the statement used to generate the PD
-   * @return netIncome
-  **/
-  @ApiModelProperty(value = "netIncome of the company from the statement used to generate the PD")
-
-  @Valid
-
-  public BigDecimal getNetIncome() {
-    return netIncome;
-  }
-
-  public void setNetIncome(BigDecimal netIncome) {
-    this.netIncome = netIncome;
-  }
-
-  public Company totalEquity(BigDecimal totalEquity) {
-    this.totalEquity = totalEquity;
-    return this;
-  }
-
-  /**
-   * total equity of the company from the statement used to generate the PD
-   * @return totalEquity
-  **/
-  @ApiModelProperty(value = "total equity of the company from the statement used to generate the PD")
-
-  @Valid
-
-  public BigDecimal getTotalEquity() {
-    return totalEquity;
-  }
-
-  public void setTotalEquity(BigDecimal totalEquity) {
-    this.totalEquity = totalEquity;
-  }
-
-  public Company annualRevenue(BigDecimal annualRevenue) {
-    this.annualRevenue = annualRevenue;
-    return this;
-  }
-
-  /**
-   * annual revenue of the company from the statement used to generate the PD
-   * @return annualRevenue
-  **/
-  @ApiModelProperty(value = "annual revenue of the company from the statement used to generate the PD")
-
-  @Valid
-
-  public BigDecimal getAnnualRevenue() {
-    return annualRevenue;
-  }
-
-  public void setAnnualRevenue(BigDecimal annualRevenue) {
-    this.annualRevenue = annualRevenue;
-  }
-
-  public Company year(Integer year) {
-    this.year = year;
-    return this;
-  }
-
-  /**
-   * year as in the financial statement used to generate the PD
-   * @return year
-  **/
-  @ApiModelProperty(value = "year as in the financial statement used to generate the PD")
-
-
-  public Integer getYear() {
-    return year;
-  }
-
-  public void setYear(Integer year) {
-    this.year = year;
-  }
-
-  public Company orgUniqueId(Integer orgUniqueId) {
-    this.orgUniqueId = orgUniqueId;
-    return this;
-  }
-
-  /**
-   * Get orgUniqueId
-   * @return orgUniqueId
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Integer getOrgUniqueId() {
-    return orgUniqueId;
-  }
-
-  public void setOrgUniqueId(Integer orgUniqueId) {
-    this.orgUniqueId = orgUniqueId;
-  }
-
-  public Company economicGroupName(String economicGroupName) {
-    this.economicGroupName = economicGroupName;
-    return this;
-  }
-
-  /**
-   * Get economicGroupName
-   * @return economicGroupName
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getEconomicGroupName() {
-    return economicGroupName;
-  }
-
-  public void setEconomicGroupName(String economicGroupName) {
-    this.economicGroupName = economicGroupName;
-  }
-
-  public Company riskSectorName(String riskSectorName) {
-    this.riskSectorName = riskSectorName;
-    return this;
-  }
-
-  /**
-   * Get riskSectorName
-   * @return riskSectorName
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getRiskSectorName() {
-    return riskSectorName;
-  }
-
-  public void setRiskSectorName(String riskSectorName) {
-    this.riskSectorName = riskSectorName;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Company company = (Company) o;
-    return Objects.equals(this.id, company.id) &&
-        Objects.equals(this.companyIdNumber, company.companyIdNumber) &&
-        Objects.equals(this.companyName, company.companyName) &&
-        Objects.equals(this.domicileCountryISO, company.domicileCountryISO) &&
-        Objects.equals(this.portfolio, company.portfolio) &&
-        Objects.equals(this.lastPdRating, company.lastPdRating) &&
-        Objects.equals(this.companyType, company.companyType) &&
-        Objects.equals(this.companyModel, company.companyModel) &&
-        Objects.equals(this.companySector, company.companySector) &&
-        Objects.equals(this.companySpreadType, company.companySpreadType) &&
-        Objects.equals(this.companyLockMask, company.companyLockMask) &&
-        Objects.equals(this.companyCreationDate, company.companyCreationDate) &&
-        Objects.equals(this.companyCreationUser, company.companyCreationUser) &&
-        Objects.equals(this.companyModificationDate, company.companyModificationDate) &&
-        Objects.equals(this.companyModificationUser, company.companyModificationUser) &&
-        Objects.equals(this.approvedPD, company.approvedPD) &&
-        Objects.equals(this.currentPercForPdGrade, company.currentPercForPdGrade) &&
-        Objects.equals(this.pdInProcess, company.pdInProcess) &&
-        Objects.equals(this.factPdStatus, company.factPdStatus) &&
-        Objects.equals(this.isExpired, company.isExpired) &&
-        Objects.equals(this.expirationDate, company.expirationDate) &&
-        Objects.equals(this.approvedDateTime, company.approvedDateTime) &&
-        Objects.equals(this.totalAssets, company.totalAssets) &&
-        Objects.equals(this.netIncome, company.netIncome) &&
-        Objects.equals(this.totalEquity, company.totalEquity) &&
-        Objects.equals(this.annualRevenue, company.annualRevenue) &&
-        Objects.equals(this.year, company.year) &&
-        Objects.equals(this.orgUniqueId, company.orgUniqueId) &&
-        Objects.equals(this.economicGroupName, company.economicGroupName) &&
-        Objects.equals(this.riskSectorName, company.riskSectorName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, companyIdNumber, companyName, domicileCountryISO, portfolio, lastPdRating, companyType, companyModel, companySector, companySpreadType, companyLockMask, companyCreationDate, companyCreationUser, companyModificationDate, companyModificationUser, approvedPD, currentPercForPdGrade, pdInProcess, factPdStatus, isExpired, expirationDate, approvedDateTime, totalAssets, netIncome, totalEquity, annualRevenue, year, orgUniqueId, economicGroupName, riskSectorName);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Company {\n");
-    
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    companyIdNumber: ").append(toIndentedString(companyIdNumber)).append("\n");
-    sb.append("    companyName: ").append(toIndentedString(companyName)).append("\n");
-    sb.append("    domicileCountryISO: ").append(toIndentedString(domicileCountryISO)).append("\n");
-    sb.append("    portfolio: ").append(toIndentedString(portfolio)).append("\n");
-    sb.append("    lastPdRating: ").append(toIndentedString(lastPdRating)).append("\n");
-    sb.append("    companyType: ").append(toIndentedString(companyType)).append("\n");
-    sb.append("    companyModel: ").append(toIndentedString(companyModel)).append("\n");
-    sb.append("    companySector: ").append(toIndentedString(companySector)).append("\n");
-    sb.append("    companySpreadType: ").append(toIndentedString(companySpreadType)).append("\n");
-    sb.append("    companyLockMask: ").append(toIndentedString(companyLockMask)).append("\n");
-    sb.append("    companyCreationDate: ").append(toIndentedString(companyCreationDate)).append("\n");
-    sb.append("    companyCreationUser: ").append(toIndentedString(companyCreationUser)).append("\n");
-    sb.append("    companyModificationDate: ").append(toIndentedString(companyModificationDate)).append("\n");
-    sb.append("    companyModificationUser: ").append(toIndentedString(companyModificationUser)).append("\n");
-    sb.append("    approvedPD: ").append(toIndentedString(approvedPD)).append("\n");
-    sb.append("    currentPercForPdGrade: ").append(toIndentedString(currentPercForPdGrade)).append("\n");
-    sb.append("    pdInProcess: ").append(toIndentedString(pdInProcess)).append("\n");
-    sb.append("    factPdStatus: ").append(toIndentedString(factPdStatus)).append("\n");
-    sb.append("    isExpired: ").append(toIndentedString(isExpired)).append("\n");
-    sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
-    sb.append("    approvedDateTime: ").append(toIndentedString(approvedDateTime)).append("\n");
-    sb.append("    totalAssets: ").append(toIndentedString(totalAssets)).append("\n");
-    sb.append("    netIncome: ").append(toIndentedString(netIncome)).append("\n");
-    sb.append("    totalEquity: ").append(toIndentedString(totalEquity)).append("\n");
-    sb.append("    annualRevenue: ").append(toIndentedString(annualRevenue)).append("\n");
-    sb.append("    year: ").append(toIndentedString(year)).append("\n");
-    sb.append("    orgUniqueId: ").append(toIndentedString(orgUniqueId)).append("\n");
-    sb.append("    economicGroupName: ").append(toIndentedString(economicGroupName)).append("\n");
-    sb.append("    riskSectorName: ").append(toIndentedString(riskSectorName)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	public void setCreationUser(Integer creationUser) {
+		this.creationUser = creationUser;
+	}
+
+	public Company modificationDate(LocalDate modificationDate) {
+		this.modificationDate = modificationDate;
+		return this;
+	}
+
+	/**
+	 * date of modification
+	 * @return modificationDate
+	 **/
+	@ApiModelProperty(value = "date of modification")
+
+	@Valid
+
+	public LocalDate getModificationDate() {
+		return modificationDate;
+	}
+
+	public void setModificationDate(LocalDate modificationDate) {
+		this.modificationDate = modificationDate;
+	}
+
+	public Company modificationUser(Integer modificationUser) {
+		this.modificationUser = modificationUser;
+		return this;
+	}
+
+	/**
+	 * fact user id
+	 * @return modificationUser
+	 **/
+	@ApiModelProperty(value = "fact user id")
+
+
+	public Integer getModificationUser() {
+		return modificationUser;
+	}
+
+	public void setModificationUser(Integer modificationUser) {
+		this.modificationUser = modificationUser;
+	}
+
+	
+
+	public Company sector(String sector) {
+		this.sector = sector;
+		return this;
+	}
+
+	/**
+	 * Get sector
+	 * @return sector
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public String getSector() {
+		return sector;
+	}
+
+	public void setSector(String sector) {
+		this.sector = sector;
+	}
+
+	public Company workflowStatus(Integer workflowStatus) {
+		this.workflowStatus = workflowStatus;
+		return this;
+	}
+
+	/**
+	 * Get workflowStatus
+	 * @return workflowStatus
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public Integer getWorkflowStatus() {
+		return workflowStatus;
+	}
+
+	public void setWorkflowStatus(Integer workflowStatus) {
+		this.workflowStatus = workflowStatus;
+	}
+
+	public Company statementKey(String statementKey) {
+		this.statementKey = statementKey;
+		return this;
+	}
+
+	/**
+	 * Get statementKey
+	 * @return statementKey
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public String getStatementKey() {
+		return statementKey;
+	}
+
+	public void setStatementKey(String statementKey) {
+		this.statementKey = statementKey;
+	}
+
+	public Company financeSector(String financeSector) {
+		this.financeSector = financeSector;
+		return this;
+	}
+
+	/**
+	 * Get financeSector
+	 * @return financeSector
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public String getFinanceSector() {
+		return financeSector;
+	}
+
+	public void setFinanceSector(String financeSector) {
+		this.financeSector = financeSector;
+	}
+
+	public Company financeSubSector(String financeSubSector) {
+		this.financeSubSector = financeSubSector;
+		return this;
+	}
+
+	/**
+	 * Get financeSubSector
+	 * @return financeSubSector
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public String getFinanceSubSector() {
+		return financeSubSector;
+	}
+
+	public void setFinanceSubSector(String financeSubSector) {
+		this.financeSubSector = financeSubSector;
+	}
+
+	public Company lastPDRating(BigDecimal lastPDRating) {
+		this.lastPDRating = lastPDRating;
+		return this;
+	}
+
+	/**
+	 * Get lastPDRating
+	 * @return lastPDRating
+	 **/
+	@ApiModelProperty(value = "")
+
+	@Valid
+
+	public BigDecimal getLastPDRating() {
+		return lastPDRating;
+	}
+
+	public void setLastPDRating(BigDecimal lastPDRating) {
+		this.lastPDRating = lastPDRating;
+	}
+
+	public Company layoutFormat(String layoutFormat) {
+		this.layoutFormat = layoutFormat;
+		return this;
+	}
+
+	/**
+	 * Get layoutFormat
+	 * @return layoutFormat
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public String getLayoutFormat() {
+		return layoutFormat;
+	}
+
+	public void setLayoutFormat(String layoutFormat) {
+		this.layoutFormat = layoutFormat;
+	}
+
+	public Company hasArchives(Integer hasArchives) {
+		this.hasArchives = hasArchives;
+		return this;
+	}
+
+	/**
+	 * Get hasArchives
+	 * @return hasArchives
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public Integer getHasArchives() {
+		return hasArchives;
+	}
+
+	public void setHasArchives(Integer hasArchives) {
+		this.hasArchives = hasArchives;
+	}
+
+	public Company hasApprovedArchived(Integer hasApprovedArchived) {
+		this.hasApprovedArchived = hasApprovedArchived;
+		return this;
+	}
+
+	/**
+	 * Get hasApprovedArchived
+	 * @return hasApprovedArchived
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public Integer getHasApprovedArchived() {
+		return hasApprovedArchived;
+	}
+
+	public void setHasApprovedArchived(Integer hasApprovedArchived) {
+		this.hasApprovedArchived = hasApprovedArchived;
+	}
+
+	public Company fileToImport(String fileToImport) {
+		this.fileToImport = fileToImport;
+		return this;
+	}
+
+	/**
+	 * Get fileToImport
+	 * @return fileToImport
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public String getFileToImport() {
+		return fileToImport;
+	}
+
+	public void setFileToImport(String fileToImport) {
+		this.fileToImport = fileToImport;
+	}
+
+	public Company govtSupportType(String govtSupportType) {
+		this.govtSupportType = govtSupportType;
+		return this;
+	}
+
+	/**
+	 * Get govtSupportType
+	 * @return govtSupportType
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public String getGovtSupportType() {
+		return govtSupportType;
+	}
+
+	public void setGovtSupportType(String govtSupportType) {
+		this.govtSupportType = govtSupportType;
+	}
+
+	public Company hasGovtSupport(String hasGovtSupport) {
+		this.hasGovtSupport = hasGovtSupport;
+		return this;
+	}
+
+	/**
+	 * Get hasGovtSupport
+	 * @return hasGovtSupport
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public String getHasGovtSupport() {
+		return hasGovtSupport;
+	}
+
+	public void setHasGovtSupport(String hasGovtSupport) {
+		this.hasGovtSupport = hasGovtSupport;
+	}
+
+	public Company operationCountryISO(Integer operationCountryISO) {
+		this.operationCountryISO = operationCountryISO;
+		return this;
+	}
+
+	/**
+	 * Get operationCountryISO
+	 * @return operationCountryISO
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public Integer getOperationCountryISO() {
+		return operationCountryISO;
+	}
+
+	public void setOperationCountryISO(Integer operationCountryISO) {
+		this.operationCountryISO = operationCountryISO;
+	}
+
+	public Company constructionCountryISO(Integer constructionCountryISO) {
+		this.constructionCountryISO = constructionCountryISO;
+		return this;
+	}
+
+	/**
+	 * Get constructionCountryISO
+	 * @return constructionCountryISO
+	 **/
+	@ApiModelProperty(value = "")
+
+
+	public Integer getConstructionCountryISO() {
+		return constructionCountryISO;
+	}
+
+	public void setConstructionCountryISO(Integer constructionCountryISO) {
+		this.constructionCountryISO = constructionCountryISO;
+	}
+
+
+
+
+	public Integer getLockMask() {
+		return lockMask;
+	}
+
+	public void setLockMask(Integer lockMask) {
+		this.lockMask = lockMask;
+	}
+
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Company company = (Company) o;
+		return Objects.equals(this.id, company.id) &&
+				Objects.equals(this.idNumber, company.idNumber) &&
+				Objects.equals(this.elementId, company.elementId) &&
+				Objects.equals(this.userGroupId, company.userGroupId) &&
+				Objects.equals(this.groupId, company.groupId) &&
+				Objects.equals(this.name, company.name) &&
+				Objects.equals(this.domicileCountryISO, company.domicileCountryISO) &&
+				Objects.equals(this.portfolio, company.portfolio) &&
+				Objects.equals(this.type, company.type) &&
+				Objects.equals(this.companyModel, company.companyModel) &&
+				Objects.equals(this.bankScopeId, company.bankScopeId) &&
+				Objects.equals(this.spreadType, company.spreadType) &&
+				Objects.equals(this.analystUserId, company.analystUserId) &&
+				Objects.equals(this.creationDate, company.creationDate) &&
+				Objects.equals(this.creationUser, company.creationUser) &&
+				Objects.equals(this.modificationDate, company.modificationDate) &&
+				Objects.equals(this.modificationUser, company.modificationUser) &&
+				Objects.equals(this.lockMask, company.lockMask) &&
+				Objects.equals(this.sector, company.sector) &&
+				Objects.equals(this.workflowStatus, company.workflowStatus) &&
+				Objects.equals(this.statementKey, company.statementKey) &&
+				Objects.equals(this.financeSector, company.financeSector) &&
+				Objects.equals(this.financeSubSector, company.financeSubSector) &&
+				Objects.equals(this.lastPDRating, company.lastPDRating) &&
+				Objects.equals(this.layoutFormat, company.layoutFormat) &&
+				Objects.equals(this.hasArchives, company.hasArchives) &&
+				Objects.equals(this.hasApprovedArchived, company.hasApprovedArchived) &&
+				Objects.equals(this.fileToImport, company.fileToImport) &&
+				Objects.equals(this.govtSupportType, company.govtSupportType) &&
+				Objects.equals(this.hasGovtSupport, company.hasGovtSupport) &&
+				Objects.equals(this.operationCountryISO, company.operationCountryISO) &&
+				Objects.equals(this.constructionCountryISO, company.constructionCountryISO);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, idNumber, elementId, userGroupId, groupId, name, domicileCountryISO, portfolio, type, companyModel, bankScopeId, spreadType, analystUserId, creationDate, creationUser, modificationDate, modificationUser, lockMask, sector, workflowStatus, statementKey, financeSector, financeSubSector, lastPDRating, layoutFormat, hasArchives, hasApprovedArchived, fileToImport, govtSupportType, hasGovtSupport, operationCountryISO, constructionCountryISO);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class Company {\n");
+
+		sb.append("    id: ").append(toIndentedString(id)).append("\n");
+		sb.append("    idNumber: ").append(toIndentedString(idNumber)).append("\n");
+		sb.append("    elementId: ").append(toIndentedString(elementId)).append("\n");
+		sb.append("    userGroupId: ").append(toIndentedString(userGroupId)).append("\n");
+		sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
+		sb.append("    name: ").append(toIndentedString(name)).append("\n");
+		sb.append("    domicileCountryISO: ").append(toIndentedString(domicileCountryISO)).append("\n");
+		sb.append("    portfolio: ").append(toIndentedString(portfolio)).append("\n");
+		sb.append("    type: ").append(toIndentedString(type)).append("\n");
+		sb.append("    companyModel: ").append(toIndentedString(companyModel)).append("\n");
+		sb.append("    bankScopeId: ").append(toIndentedString(bankScopeId)).append("\n");
+		sb.append("    spreadType: ").append(toIndentedString(spreadType)).append("\n");
+		sb.append("    analystUserId: ").append(toIndentedString(analystUserId)).append("\n");
+		sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
+		sb.append("    creationUser: ").append(toIndentedString(creationUser)).append("\n");
+		sb.append("    modificationDate: ").append(toIndentedString(modificationDate)).append("\n");
+		sb.append("    modificationUser: ").append(toIndentedString(modificationUser)).append("\n");
+		sb.append("    lockMask: ").append(toIndentedString(lockMask)).append("\n");
+		sb.append("    sector: ").append(toIndentedString(sector)).append("\n");
+		sb.append("    workflowStatus: ").append(toIndentedString(workflowStatus)).append("\n");
+		sb.append("    statementKey: ").append(toIndentedString(statementKey)).append("\n");
+		sb.append("    financeSector: ").append(toIndentedString(financeSector)).append("\n");
+		sb.append("    financeSubSector: ").append(toIndentedString(financeSubSector)).append("\n");
+		sb.append("    lastPDRating: ").append(toIndentedString(lastPDRating)).append("\n");
+		sb.append("    layoutFormat: ").append(toIndentedString(layoutFormat)).append("\n");
+		sb.append("    hasArchives: ").append(toIndentedString(hasArchives)).append("\n");
+		sb.append("    hasApprovedArchived: ").append(toIndentedString(hasApprovedArchived)).append("\n");
+		sb.append("    fileToImport: ").append(toIndentedString(fileToImport)).append("\n");
+		sb.append("    govtSupportType: ").append(toIndentedString(govtSupportType)).append("\n");
+		sb.append("    hasGovtSupport: ").append(toIndentedString(hasGovtSupport)).append("\n");
+		sb.append("    operationCountryISO: ").append(toIndentedString(operationCountryISO)).append("\n");
+		sb.append("    constructionCountryISO: ").append(toIndentedString(constructionCountryISO)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
+
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 }
 
