@@ -5,7 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.iadb.iic.apps.factcuid.model.Facility;
+import org.iadb.iic.apps.factcuid.model.RiskFacility;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,38 +24,38 @@ import io.swagger.annotations.Authorization;
 @RequestMapping(value = "/v2")
 public interface FacilitiesApi {
 
-    @ApiOperation(value = "Finds facility rating by rating period", nickname = "findFacilityRatingByIdAndPeriod", notes = "Provide rating period", response = Facility.class, authorizations = {
+    @ApiOperation(value = "Finds facility rating by rating period", nickname = "findFacilityRatingByIdAndPeriod", notes = "Provide rating period", response = RiskFacility.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "facility", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = Facility.class),
+        @ApiResponse(code = 200, message = "successful operation", response = RiskFacility.class),
         @ApiResponse(code = 400, message = "Invalid status value") })
     @RequestMapping(value = "/facilities/{facilityId}/findByPeriodo",
         produces = { "application/xml", "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Facility> findFacilityRatingByIdAndPeriod(@ApiParam(value = "FacilityId",required=true) @PathVariable("facilityId") String facilityId,@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo);
+    ResponseEntity<RiskFacility> findFacilityRatingByIdAndPeriod(@ApiParam(value = "FacilityId",required=true) @PathVariable("facilityId") String facilityId,@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo);
 
 
-    @ApiOperation(value = "Finds facility ratings by rating period", nickname = "findFacilityRatingsByPeriod", notes = "Provide rating period", response = Facility.class, responseContainer = "List", authorizations = {
+    @ApiOperation(value = "Finds facility ratings by rating period", nickname = "findFacilityRatingsByPeriod", notes = "Provide rating period", response = RiskFacility.class, responseContainer = "List", authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "facility", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = Facility.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "successful operation", response = RiskFacility.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "Invalid status value") })
     @RequestMapping(value = "/facilities/findByPeriodo",
         produces = { "application/xml", "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Facility>> findFacilityRatingsByPeriod(@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo);
+    ResponseEntity<List<RiskFacility>> findFacilityRatingsByPeriod(@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo);
 
 
-    @ApiOperation(value = "Returns list of all facilties with ratings", nickname = "getFacilityRatings", notes = "Returns a list of facilities with ratings", response = Facility.class, responseContainer = "List", authorizations = {
+    @ApiOperation(value = "Returns list of all facilties with ratings", nickname = "getFacilityRatings", notes = "Returns a list of facilities with ratings", response = RiskFacility.class, responseContainer = "List", authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "facility", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = Facility.class, responseContainer = "List") })
+        @ApiResponse(code = 200, message = "successful operation", response = RiskFacility.class, responseContainer = "List") })
     @RequestMapping(value = "/facilities",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Facility>> getFacilityRatings();
+    ResponseEntity<List<RiskFacility>> getFacilityRatings();
 
 }

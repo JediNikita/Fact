@@ -19,14 +19,7 @@ public class CompanyApiServiceImpl implements CompaniesApiService {
 	private CompaniesDao compDao;
 	
 	@Override
-	public List<Company> getCompanyListByParams(@NotNull @Valid String portfolio,
-			@Valid Boolean isPDExpired) {
-
-		return compDao.getCompanyListByParams(portfolio, isPDExpired);
-	}
-
-	@Override
-	public Company getCompanyById(Long companyId) {
+	public Company getCompanyById(String companyId) {
 		return compDao.getCompanyById(companyId);
 	}
 
@@ -36,20 +29,20 @@ public class CompanyApiServiceImpl implements CompaniesApiService {
 	}
 
 	@Override
-	public void deleteCompany(Long companyId) {
+	public void deleteCompany(String companyId) {
 		compDao.deleteCompany(companyId);
 		
 	}
 
 	@Override
-	public List<Company> getAllCompanies() {
-		
-		return compDao.getAllCompanies();
+	public void updateCompany(String companyId, @Valid Company company) {
+		compDao.update(companyId, company);
 	}
 
 	@Override
-	public void updateCompany(@Valid Company company) {
-		compDao.updateCompany(company);
+	public void getCompanyFinancials(String companyId) {
+		compDao.getCompanyFinancials(companyId);
 	}
+
 
 }

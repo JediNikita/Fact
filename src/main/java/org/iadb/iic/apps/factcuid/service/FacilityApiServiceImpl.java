@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.websocket.server.ServerEndpoint;
 
 import org.iadb.iic.apps.factcuid.dao.FacilityDao;
-import org.iadb.iic.apps.factcuid.model.Facility;
+import org.iadb.iic.apps.factcuid.model.RiskFacility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +19,18 @@ public class FacilityApiServiceImpl implements FacilityApiService{
 	private FacilityDao facDao;
 	
 	@Override
-	public List<Facility> findFacilityRatings() {
+	public List<RiskFacility> findFacilityRatings() {
 		return facDao.findFacilityRatings();
 	}
 
 	@Override
-	public List<Facility> findFacilityRatingPeriod(@NotNull @Valid String periodo) {
+	public List<RiskFacility> findFacilityRatingPeriod(@NotNull @Valid String periodo) {
 		// TODO Auto-generated method stub
 		return facDao.findFacilityRatingByPeriod(periodo);
 	}
 
 	@Override
-	public Facility findFacilityRatingByIdAndPeriod(String facilityId, @NotNull @Valid String periodo) {
+	public RiskFacility findFacilityRatingByIdAndPeriod(String facilityId, @NotNull @Valid String periodo) {
 		// TODO Auto-generated method stub
 		return facDao.findFacilityRatingByIdAndPeriod(facilityId, periodo);
 	}

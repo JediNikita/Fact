@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
-import org.threeten.bp.LocalDate;
+
+import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -15,111 +15,57 @@ import javax.validation.constraints.*;
  * Project
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-10-03T11:06:16.982Z")
-
-
-
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-10-05T06:03:11.204Z[GMT]")
+@Component
 
 public class Project   {
-  @JsonProperty("id")
-  private Long id = null;
+  @JsonProperty("projId")
+  private Integer projId = null;
 
   @JsonProperty("companyId")
-  private Long companyId = null;
+  private String companyId = null;
 
-  @JsonProperty("elementId")
-  private Long elementId = null;
+  @JsonProperty("projName")
+  private String projName = null;
 
-  @JsonProperty("userGroupId")
-  private Long userGroupId = null;
+  @JsonProperty("projNumber")
+  private String projNumber = null;
 
-  @JsonProperty("name")
-  private String name = null;
+  @JsonProperty("projOperationNumber")
+  private String projOperationNumber = null;
 
-  @JsonProperty("number")
-  private String number = null;
+  @JsonProperty("projOpusOtherCompCount")
+  private Integer projOpusOtherCompCount = null;
 
-  @JsonProperty("operationNumber")
-  private String operationNumber = null;
+  @JsonProperty("projOpusSector")
+  private String projOpusSector = null;
 
-  @JsonProperty("opusOtherCompanyCount")
-  private Long opusOtherCompanyCount = null;
+  @JsonProperty("projOpusSection")
+  private String projOpusSection = null;
 
-  @JsonProperty("opusSector")
-  private String opusSector = null;
+  @JsonProperty("projTeamLeader")
+  private String projTeamLeader = null;
 
-  @JsonProperty("opusSection")
-  private String opusSection = null;
-
-  @JsonProperty("lockMask")
-  private Integer lockMask = null;
-
-  @JsonProperty("creationDate")
-  private LocalDate creationDate = null;
-
-  @JsonProperty("creationUser")
-  private Integer creationUser = null;
-
-  @JsonProperty("modificationDate")
-  private LocalDate modificationDate = null;
-
-  @JsonProperty("modificationUser")
-  private Integer modificationUser = null;
-
-  @JsonProperty("analysisDate")
-  private LocalDate analysisDate = null;
-
-  @JsonProperty("status")
-  private String status = null;
-
-  @JsonProperty("colpathJurisdictionCountryISO")
-  private Long colpathJurisdictionCountryISO = null;
-
-  @JsonProperty("senpathJurisdictionCountryISO")
-  private Long senpathJurisdictionCountryISO = null;
-
-  @JsonProperty("sectorFacilitySenpath")
-  private Long sectorFacilitySenpath = null;
-
-  @JsonProperty("sectorFacilityColpath")
-  private Long sectorFacilityColpath = null;
-
-  @JsonProperty("activeStatus")
-  private String activeStatus = null;
-
-  @JsonProperty("isHistorical")
-  private Integer isHistorical = null;
-
-  @JsonProperty("historicalProjectId")
-  private Long historicalProjectId = null;
-
-  @JsonProperty("companyFinalPDRating")
-  private BigDecimal companyFinalPDRating = null;
-
-  @JsonProperty("maestroCreatorId")
-  private Integer maestroCreatorId = null;
-
-  public Project id(Long id) {
-    this.id = id;
+  public Project projId(Integer projId) {
+    this.projId = projId;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get projId
+   * @return projId
   **/
   @ApiModelProperty(value = "")
-
-
-  public Long getId() {
-    return id;
+  
+    public Integer getProjId() {
+    return projId;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setProjId(Integer projId) {
+    this.projId = projId;
   }
 
-  public Project companyId(Long companyId) {
+  public Project companyId(String companyId) {
     this.companyId = companyId;
     return this;
   }
@@ -129,498 +75,146 @@ public class Project   {
    * @return companyId
   **/
   @ApiModelProperty(value = "")
-
-
-  public Long getCompanyId() {
+  
+    public String getCompanyId() {
     return companyId;
   }
 
-  public void setCompanyId(Long companyId) {
+  public void setCompanyId(String companyId) {
     this.companyId = companyId;
   }
 
-  public Project elementId(Long elementId) {
-    this.elementId = elementId;
+  public Project projName(String projName) {
+    this.projName = projName;
     return this;
   }
 
   /**
-   * Get elementId
-   * @return elementId
+   * Get projName
+   * @return projName
   **/
   @ApiModelProperty(value = "")
-
-
-  public Long getElementId() {
-    return elementId;
+  
+    public String getProjName() {
+    return projName;
   }
 
-  public void setElementId(Long elementId) {
-    this.elementId = elementId;
+  public void setProjName(String projName) {
+    this.projName = projName;
   }
 
-  public Project userGroupId(Long userGroupId) {
-    this.userGroupId = userGroupId;
+  public Project projNumber(String projNumber) {
+    this.projNumber = projNumber;
     return this;
   }
 
   /**
-   * Get userGroupId
-   * @return userGroupId
+   * Get projNumber
+   * @return projNumber
   **/
   @ApiModelProperty(value = "")
-
-
-  public Long getUserGroupId() {
-    return userGroupId;
+  
+    public String getProjNumber() {
+    return projNumber;
   }
 
-  public void setUserGroupId(Long userGroupId) {
-    this.userGroupId = userGroupId;
+  public void setProjNumber(String projNumber) {
+    this.projNumber = projNumber;
   }
 
-  public Project name(String name) {
-    this.name = name;
+  public Project projOperationNumber(String projOperationNumber) {
+    this.projOperationNumber = projOperationNumber;
     return this;
   }
 
   /**
-   * Get name
-   * @return name
+   * Get projOperationNumber
+   * @return projOperationNumber
   **/
   @ApiModelProperty(value = "")
-
-
-  public String getName() {
-    return name;
+  
+    public String getProjOperationNumber() {
+    return projOperationNumber;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setProjOperationNumber(String projOperationNumber) {
+    this.projOperationNumber = projOperationNumber;
   }
 
-  public Project number(String number) {
-    this.number = number;
+  public Project projOpusOtherCompCount(Integer projOpusOtherCompCount) {
+    this.projOpusOtherCompCount = projOpusOtherCompCount;
     return this;
   }
 
   /**
-   * Get number
-   * @return number
+   * Get projOpusOtherCompCount
+   * @return projOpusOtherCompCount
   **/
   @ApiModelProperty(value = "")
-
-
-  public String getNumber() {
-    return number;
+  
+    public Integer getProjOpusOtherCompCount() {
+    return projOpusOtherCompCount;
   }
 
-  public void setNumber(String number) {
-    this.number = number;
+  public void setProjOpusOtherCompCount(Integer projOpusOtherCompCount) {
+    this.projOpusOtherCompCount = projOpusOtherCompCount;
   }
 
-  public Project operationNumber(String operationNumber) {
-    this.operationNumber = operationNumber;
+  public Project projOpusSector(String projOpusSector) {
+    this.projOpusSector = projOpusSector;
     return this;
   }
 
   /**
-   * Get operationNumber
-   * @return operationNumber
+   * Get projOpusSector
+   * @return projOpusSector
   **/
   @ApiModelProperty(value = "")
-
-
-  public String getOperationNumber() {
-    return operationNumber;
+  
+    public String getProjOpusSector() {
+    return projOpusSector;
   }
 
-  public void setOperationNumber(String operationNumber) {
-    this.operationNumber = operationNumber;
+  public void setProjOpusSector(String projOpusSector) {
+    this.projOpusSector = projOpusSector;
   }
 
-  public Project opusOtherCompanyCount(Long opusOtherCompanyCount) {
-    this.opusOtherCompanyCount = opusOtherCompanyCount;
+  public Project projOpusSection(String projOpusSection) {
+    this.projOpusSection = projOpusSection;
     return this;
   }
 
   /**
-   * Get opusOtherCompanyCount
-   * @return opusOtherCompanyCount
+   * Get projOpusSection
+   * @return projOpusSection
   **/
   @ApiModelProperty(value = "")
-
-
-  public Long getOpusOtherCompanyCount() {
-    return opusOtherCompanyCount;
+  
+    public String getProjOpusSection() {
+    return projOpusSection;
   }
 
-  public void setOpusOtherCompanyCount(Long opusOtherCompanyCount) {
-    this.opusOtherCompanyCount = opusOtherCompanyCount;
+  public void setProjOpusSection(String projOpusSection) {
+    this.projOpusSection = projOpusSection;
   }
 
-  public Project opusSector(String opusSector) {
-    this.opusSector = opusSector;
+  public Project projTeamLeader(String projTeamLeader) {
+    this.projTeamLeader = projTeamLeader;
     return this;
   }
 
   /**
-   * Get opusSector
-   * @return opusSector
+   * Get projTeamLeader
+   * @return projTeamLeader
   **/
   @ApiModelProperty(value = "")
-
-
-  public String getOpusSector() {
-    return opusSector;
+  
+    public String getProjTeamLeader() {
+    return projTeamLeader;
   }
 
-  public void setOpusSector(String opusSector) {
-    this.opusSector = opusSector;
-  }
-
-  public Project opusSection(String opusSection) {
-    this.opusSection = opusSection;
-    return this;
-  }
-
-  /**
-   * Get opusSection
-   * @return opusSection
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getOpusSection() {
-    return opusSection;
-  }
-
-  public void setOpusSection(String opusSection) {
-    this.opusSection = opusSection;
-  }
-
-  public Project lockMask(Integer lockMask) {
-    this.lockMask = lockMask;
-    return this;
-  }
-
-  /**
-   * internal fact field defaulted to a constant value
-   * @return lockMask
-  **/
-  @ApiModelProperty(value = "internal fact field defaulted to a constant value")
-
-
-  public Integer getLockMask() {
-    return lockMask;
-  }
-
-  public void setLockMask(Integer lockMask) {
-    this.lockMask = lockMask;
-  }
-
-  public Project creationDate(LocalDate creationDate) {
-    this.creationDate = creationDate;
-    return this;
-  }
-
-  /**
-   * date time of creation of project in fact
-   * @return creationDate
-  **/
-  @ApiModelProperty(value = "date time of creation of project in fact")
-
-  @Valid
-
-  public LocalDate getCreationDate() {
-    return creationDate;
-  }
-
-  public void setCreationDate(LocalDate creationDate) {
-    this.creationDate = creationDate;
-  }
-
-  public Project creationUser(Integer creationUser) {
-    this.creationUser = creationUser;
-    return this;
-  }
-
-  /**
-   * fact user id
-   * @return creationUser
-  **/
-  @ApiModelProperty(value = "fact user id")
-
-
-  public Integer getCreationUser() {
-    return creationUser;
-  }
-
-  public void setCreationUser(Integer creationUser) {
-    this.creationUser = creationUser;
-  }
-
-  public Project modificationDate(LocalDate modificationDate) {
-    this.modificationDate = modificationDate;
-    return this;
-  }
-
-  /**
-   * date time of creation of project in fact
-   * @return modificationDate
-  **/
-  @ApiModelProperty(value = "date time of creation of project in fact")
-
-  @Valid
-
-  public LocalDate getModificationDate() {
-    return modificationDate;
-  }
-
-  public void setModificationDate(LocalDate modificationDate) {
-    this.modificationDate = modificationDate;
-  }
-
-  public Project modificationUser(Integer modificationUser) {
-    this.modificationUser = modificationUser;
-    return this;
-  }
-
-  /**
-   * fact user id
-   * @return modificationUser
-  **/
-  @ApiModelProperty(value = "fact user id")
-
-
-  public Integer getModificationUser() {
-    return modificationUser;
-  }
-
-  public void setModificationUser(Integer modificationUser) {
-    this.modificationUser = modificationUser;
-  }
-
-  public Project analysisDate(LocalDate analysisDate) {
-    this.analysisDate = analysisDate;
-    return this;
-  }
-
-  /**
-   * date time of LGD creation
-   * @return analysisDate
-  **/
-  @ApiModelProperty(value = "date time of LGD creation")
-
-  @Valid
-
-  public LocalDate getAnalysisDate() {
-    return analysisDate;
-  }
-
-  public void setAnalysisDate(LocalDate analysisDate) {
-    this.analysisDate = analysisDate;
-  }
-
-  public Project status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * values taken are 'ready for workflow' 'draft created'
-   * @return status
-  **/
-  @ApiModelProperty(value = "values taken are 'ready for workflow' 'draft created'")
-
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-  public Project colpathJurisdictionCountryISO(Long colpathJurisdictionCountryISO) {
-    this.colpathJurisdictionCountryISO = colpathJurisdictionCountryISO;
-    return this;
-  }
-
-  /**
-   * Get colpathJurisdictionCountryISO
-   * @return colpathJurisdictionCountryISO
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getColpathJurisdictionCountryISO() {
-    return colpathJurisdictionCountryISO;
-  }
-
-  public void setColpathJurisdictionCountryISO(Long colpathJurisdictionCountryISO) {
-    this.colpathJurisdictionCountryISO = colpathJurisdictionCountryISO;
-  }
-
-  public Project senpathJurisdictionCountryISO(Long senpathJurisdictionCountryISO) {
-    this.senpathJurisdictionCountryISO = senpathJurisdictionCountryISO;
-    return this;
-  }
-
-  /**
-   * Get senpathJurisdictionCountryISO
-   * @return senpathJurisdictionCountryISO
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getSenpathJurisdictionCountryISO() {
-    return senpathJurisdictionCountryISO;
-  }
-
-  public void setSenpathJurisdictionCountryISO(Long senpathJurisdictionCountryISO) {
-    this.senpathJurisdictionCountryISO = senpathJurisdictionCountryISO;
-  }
-
-  public Project sectorFacilitySenpath(Long sectorFacilitySenpath) {
-    this.sectorFacilitySenpath = sectorFacilitySenpath;
-    return this;
-  }
-
-  /**
-   * Get sectorFacilitySenpath
-   * @return sectorFacilitySenpath
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getSectorFacilitySenpath() {
-    return sectorFacilitySenpath;
-  }
-
-  public void setSectorFacilitySenpath(Long sectorFacilitySenpath) {
-    this.sectorFacilitySenpath = sectorFacilitySenpath;
-  }
-
-  public Project sectorFacilityColpath(Long sectorFacilityColpath) {
-    this.sectorFacilityColpath = sectorFacilityColpath;
-    return this;
-  }
-
-  /**
-   * Get sectorFacilityColpath
-   * @return sectorFacilityColpath
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getSectorFacilityColpath() {
-    return sectorFacilityColpath;
-  }
-
-  public void setSectorFacilityColpath(Long sectorFacilityColpath) {
-    this.sectorFacilityColpath = sectorFacilityColpath;
-  }
-
-  public Project activeStatus(String activeStatus) {
-    this.activeStatus = activeStatus;
-    return this;
-  }
-
-  /**
-   * active/inactive
-   * @return activeStatus
-  **/
-  @ApiModelProperty(value = "active/inactive")
-
-
-  public String getActiveStatus() {
-    return activeStatus;
-  }
-
-  public void setActiveStatus(String activeStatus) {
-    this.activeStatus = activeStatus;
-  }
-
-  public Project isHistorical(Integer isHistorical) {
-    this.isHistorical = isHistorical;
-    return this;
-  }
-
-  /**
-   * Get isHistorical
-   * @return isHistorical
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Integer getIsHistorical() {
-    return isHistorical;
-  }
-
-  public void setIsHistorical(Integer isHistorical) {
-    this.isHistorical = isHistorical;
-  }
-
-  public Project historicalProjectId(Long historicalProjectId) {
-    this.historicalProjectId = historicalProjectId;
-    return this;
-  }
-
-  /**
-   * Get historicalProjectId
-   * @return historicalProjectId
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getHistoricalProjectId() {
-    return historicalProjectId;
-  }
-
-  public void setHistoricalProjectId(Long historicalProjectId) {
-    this.historicalProjectId = historicalProjectId;
-  }
-
-  public Project companyFinalPDRating(BigDecimal companyFinalPDRating) {
-    this.companyFinalPDRating = companyFinalPDRating;
-    return this;
-  }
-
-  /**
-   * Get companyFinalPDRating
-   * @return companyFinalPDRating
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
-  public BigDecimal getCompanyFinalPDRating() {
-    return companyFinalPDRating;
-  }
-
-  public void setCompanyFinalPDRating(BigDecimal companyFinalPDRating) {
-    this.companyFinalPDRating = companyFinalPDRating;
-  }
-
-  public Project maestroCreatorId(Integer maestroCreatorId) {
-    this.maestroCreatorId = maestroCreatorId;
-    return this;
-  }
-
-  /**
-   * Get maestroCreatorId
-   * @return maestroCreatorId
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Integer getMaestroCreatorId() {
-    return maestroCreatorId;
-  }
-
-  public void setMaestroCreatorId(Integer maestroCreatorId) {
-    this.maestroCreatorId = maestroCreatorId;
+  public void setProjTeamLeader(String projTeamLeader) {
+    this.projTeamLeader = projTeamLeader;
   }
 
 
@@ -633,37 +227,20 @@ public class Project   {
       return false;
     }
     Project project = (Project) o;
-    return Objects.equals(this.id, project.id) &&
+    return Objects.equals(this.projId, project.projId) &&
         Objects.equals(this.companyId, project.companyId) &&
-        Objects.equals(this.elementId, project.elementId) &&
-        Objects.equals(this.userGroupId, project.userGroupId) &&
-        Objects.equals(this.name, project.name) &&
-        Objects.equals(this.number, project.number) &&
-        Objects.equals(this.operationNumber, project.operationNumber) &&
-        Objects.equals(this.opusOtherCompanyCount, project.opusOtherCompanyCount) &&
-        Objects.equals(this.opusSector, project.opusSector) &&
-        Objects.equals(this.opusSection, project.opusSection) &&
-        Objects.equals(this.lockMask, project.lockMask) &&
-        Objects.equals(this.creationDate, project.creationDate) &&
-        Objects.equals(this.creationUser, project.creationUser) &&
-        Objects.equals(this.modificationDate, project.modificationDate) &&
-        Objects.equals(this.modificationUser, project.modificationUser) &&
-        Objects.equals(this.analysisDate, project.analysisDate) &&
-        Objects.equals(this.status, project.status) &&
-        Objects.equals(this.colpathJurisdictionCountryISO, project.colpathJurisdictionCountryISO) &&
-        Objects.equals(this.senpathJurisdictionCountryISO, project.senpathJurisdictionCountryISO) &&
-        Objects.equals(this.sectorFacilitySenpath, project.sectorFacilitySenpath) &&
-        Objects.equals(this.sectorFacilityColpath, project.sectorFacilityColpath) &&
-        Objects.equals(this.activeStatus, project.activeStatus) &&
-        Objects.equals(this.isHistorical, project.isHistorical) &&
-        Objects.equals(this.historicalProjectId, project.historicalProjectId) &&
-        Objects.equals(this.companyFinalPDRating, project.companyFinalPDRating) &&
-        Objects.equals(this.maestroCreatorId, project.maestroCreatorId);
+        Objects.equals(this.projName, project.projName) &&
+        Objects.equals(this.projNumber, project.projNumber) &&
+        Objects.equals(this.projOperationNumber, project.projOperationNumber) &&
+        Objects.equals(this.projOpusOtherCompCount, project.projOpusOtherCompCount) &&
+        Objects.equals(this.projOpusSector, project.projOpusSector) &&
+        Objects.equals(this.projOpusSection, project.projOpusSection) &&
+        Objects.equals(this.projTeamLeader, project.projTeamLeader);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, companyId, elementId, userGroupId, name, number, operationNumber, opusOtherCompanyCount, opusSector, opusSection, lockMask, creationDate, creationUser, modificationDate, modificationUser, analysisDate, status, colpathJurisdictionCountryISO, senpathJurisdictionCountryISO, sectorFacilitySenpath, sectorFacilityColpath, activeStatus, isHistorical, historicalProjectId, companyFinalPDRating, maestroCreatorId);
+    return Objects.hash(projId, companyId, projName, projNumber, projOperationNumber, projOpusOtherCompCount, projOpusSector, projOpusSection, projTeamLeader);
   }
 
   @Override
@@ -671,32 +248,15 @@ public class Project   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Project {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    projId: ").append(toIndentedString(projId)).append("\n");
     sb.append("    companyId: ").append(toIndentedString(companyId)).append("\n");
-    sb.append("    elementId: ").append(toIndentedString(elementId)).append("\n");
-    sb.append("    userGroupId: ").append(toIndentedString(userGroupId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    number: ").append(toIndentedString(number)).append("\n");
-    sb.append("    operationNumber: ").append(toIndentedString(operationNumber)).append("\n");
-    sb.append("    opusOtherCompanyCount: ").append(toIndentedString(opusOtherCompanyCount)).append("\n");
-    sb.append("    opusSector: ").append(toIndentedString(opusSector)).append("\n");
-    sb.append("    opusSection: ").append(toIndentedString(opusSection)).append("\n");
-    sb.append("    lockMask: ").append(toIndentedString(lockMask)).append("\n");
-    sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
-    sb.append("    creationUser: ").append(toIndentedString(creationUser)).append("\n");
-    sb.append("    modificationDate: ").append(toIndentedString(modificationDate)).append("\n");
-    sb.append("    modificationUser: ").append(toIndentedString(modificationUser)).append("\n");
-    sb.append("    analysisDate: ").append(toIndentedString(analysisDate)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    colpathJurisdictionCountryISO: ").append(toIndentedString(colpathJurisdictionCountryISO)).append("\n");
-    sb.append("    senpathJurisdictionCountryISO: ").append(toIndentedString(senpathJurisdictionCountryISO)).append("\n");
-    sb.append("    sectorFacilitySenpath: ").append(toIndentedString(sectorFacilitySenpath)).append("\n");
-    sb.append("    sectorFacilityColpath: ").append(toIndentedString(sectorFacilityColpath)).append("\n");
-    sb.append("    activeStatus: ").append(toIndentedString(activeStatus)).append("\n");
-    sb.append("    isHistorical: ").append(toIndentedString(isHistorical)).append("\n");
-    sb.append("    historicalProjectId: ").append(toIndentedString(historicalProjectId)).append("\n");
-    sb.append("    companyFinalPDRating: ").append(toIndentedString(companyFinalPDRating)).append("\n");
-    sb.append("    maestroCreatorId: ").append(toIndentedString(maestroCreatorId)).append("\n");
+    sb.append("    projName: ").append(toIndentedString(projName)).append("\n");
+    sb.append("    projNumber: ").append(toIndentedString(projNumber)).append("\n");
+    sb.append("    projOperationNumber: ").append(toIndentedString(projOperationNumber)).append("\n");
+    sb.append("    projOpusOtherCompCount: ").append(toIndentedString(projOpusOtherCompCount)).append("\n");
+    sb.append("    projOpusSector: ").append(toIndentedString(projOpusSector)).append("\n");
+    sb.append("    projOpusSection: ").append(toIndentedString(projOpusSection)).append("\n");
+    sb.append("    projTeamLeader: ").append(toIndentedString(projTeamLeader)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -712,4 +272,3 @@ public class Project   {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.iadb.iic.apps.factcuid.model.Facility;
+import org.iadb.iic.apps.factcuid.model.RiskFacility;
 import org.iadb.iic.apps.factcuid.service.FacilityApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,51 +44,51 @@ public class FacilitiesApiController implements FacilitiesApi {
     }
 
     @Override
-	public ResponseEntity<Facility> findFacilityRatingByIdAndPeriod(@ApiParam(value = "FacilityId",required=true) @PathVariable("facilityId") String facilityId,@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo) {
+	public ResponseEntity<RiskFacility> findFacilityRatingByIdAndPeriod(@ApiParam(value = "FacilityId",required=true) @PathVariable("facilityId") String facilityId,@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo) {
         String accept = request.getHeader("Accept");
-        Facility facility= fas.findFacilityRatingByIdAndPeriod(facilityId, periodo);
+        RiskFacility facility= fas.findFacilityRatingByIdAndPeriod(facilityId, periodo);
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Facility>(objectMapper.readValue("{  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}", Facility.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<RiskFacility>(objectMapper.readValue("{  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}", RiskFacility.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Facility>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<RiskFacility>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<Facility>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<RiskFacility>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override
-	public ResponseEntity<List<Facility>> findFacilityRatingsByPeriod(@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo) {
+	public ResponseEntity<List<RiskFacility>> findFacilityRatingsByPeriod(@NotNull @ApiParam(value = "Effective period in yyyymm format", required = true) @Valid @RequestParam(value = "periodo", required = true) String periodo) {
         String accept = request.getHeader("Accept");
-        List<Facility> facilityList= fas.findFacilityRatingPeriod(periodo);
+        List<RiskFacility> facilityList= fas.findFacilityRatingPeriod(periodo);
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Facility>>(objectMapper.readValue("[ {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}, {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<RiskFacility>>(objectMapper.readValue("[ {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}, {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Facility>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<RiskFacility>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<Facility>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<RiskFacility>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override
-	public ResponseEntity<List<Facility>> getFacilityRatings() {
+	public ResponseEntity<List<RiskFacility>> getFacilityRatings() {
         String accept = request.getHeader("Accept");
-        List<Facility> facilityList= fas.findFacilityRatings();
+        List<RiskFacility> facilityList= fas.findFacilityRatings();
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Facility>>(objectMapper.readValue("[ {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}, {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<RiskFacility>>(objectMapper.readValue("[ {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375}, {  \"expectedLossDefault\" : 6.02745618307040320615897144307382404804229736328125,  \"finalRating\" : \"A\",  \"ratingDate\" : \"2000-01-23\",  \"id\" : 0,  \"yyyymm\" : \"yyyymm\",  \"expectedLossGrade\" : 1.46581298050294517310021547018550336360931396484375} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Facility>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<RiskFacility>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<Facility>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<RiskFacility>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

@@ -6,19 +6,19 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.iadb.iic.apps.factcuid.model.Company;
+import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 
 public interface CompaniesDao {
 
 	void addCompany(@Valid Company company);
 
-	Company getCompanyById(Long companyId);
+	Company getCompanyById(String companyId);
 
-	List<Company> getCompanyListByParams(@NotNull @Valid String portfolio, @Valid Boolean isPDExpired);
+	void deleteCompany(String companyId);
 
-	void deleteCompany(Long companyId);
+	CompanyFinancials getCompanyFinancials(String companyId);
 
-	List<Company> getAllCompanies();
+	void update(String companyId, @Valid Company company);
 
-	void updateCompany(@Valid Company company);
 
 }

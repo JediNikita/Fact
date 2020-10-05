@@ -5,14 +5,14 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.iadb.iic.apps.factcuid.model.Facility;
+import org.iadb.iic.apps.factcuid.model.RiskFacility;
 
 public interface FacilityApiService {
 
-	List<Facility> findFacilityRatings();
+	List<RiskFacility> findFacilityRatings();
 
-	List<Facility> findFacilityRatingPeriod(@NotNull @Valid String periodo);
+	List<RiskFacility> findFacilityRatingPeriod(@NotNull @Valid String periodo);
 
-	Facility findFacilityRatingByIdAndPeriod(String facilityId, @NotNull @Valid String periodo);
+	RiskFacility findFacilityRatingByIdAndPeriod(String facilityId, @NotNull @Valid String periodo);
 
 }

@@ -6,9 +6,12 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.iadb.iic.apps.factcuid.dao.mapper.PDResultSetExtractor;
+import org.iadb.iic.apps.factcuid.dao.mapper.PDRowMapper;
 import org.iadb.iic.apps.factcuid.dao.mapper.CompanyResultSetExtractor;
 import org.iadb.iic.apps.factcuid.dao.mapper.CompanyRowMapper;
 import org.iadb.iic.apps.factcuid.model.Company;
+import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,11 +19,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CompaniesDaoImpl implements CompaniesDao {
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	
+	@Autowired
+	private CompanyFinancialsDao cfdao;
+
 	@Override
 	public void addCompany(@Valid Company company) {
 		String sql = "INSERT INTO company (\r\n"
@@ -58,38 +63,21 @@ public class CompaniesDaoImpl implements CompaniesDao {
 				+ "                        comp_construction_country_iso\r\n"
 				+ "                    )\r\n"
 				+ "                    VALUES ();";
-		jdbcTemplate.update(sql, company.getId(), company.getElementId(), company.getUserGroupId(),
-				company.getPortfolio(), company.getCompanyModel(), company.getName(), company.getSector()
-				, company.getGroupId(), company.getLockMask(), company.getCreationDate(),company.getCreationUser(),
-				company.getModificationDate(), company.getModificationUser(), company.getIdNumber(), company.getBankScopeId(),
-				company.getDomicileCountryISO(), company.getAnalystUserId(), company.getSpreadType(), company.getType(),
-				company.getWorkflowStatus(), company.getStatementKey(), company.getFinanceSector(), company.getFinanceSubSector(),
-				company.getLastPDRating(), company.getLayoutFormat(), company.getHasArchives(), company.getHasApprovedArchived(), 
-				company.getFileToImport(), company.getGovtSupportType(), company.getHasGovtSupport(), company.getOperationCountryISO(),
-				company.getConstructionCountryISO());
+
 	}
 
 
 	@Override
-	public Company getCompanyById(Long companyId) {
-		String sql= "SELECT C FROM COMPANY C WHERE C.comp_id_pkey=?;";
-		Company comp= (Company) jdbcTemplate.queryForObject(sql, new Object[] {companyId}, BeanPropertyRowMapper.newInstance(Company.class));
+	public Company getCompanyById(String companyId) {
+		String sql= "SELECT * FROM COMPANY C WHERE C.comp_id_number=?;";
+		Company comp= (Company) jdbcTemplate.queryForObject(sql, new Object[] {companyId}, new CompanyRowMapper());
 		System.out.println(comp);
 		return comp;
 	}
 
 
 	@Override
-	public List<Company> getCompanyListByParams(@NotNull @Valid String portfolio, @Valid Boolean isPDExpired) {
-		List<Company> companyList= new ArrayList<>();
-		String sql= "SELECT C FROM COMPANY C WHERE C.comp_portfolio=? AND C.ISPDEXPIRED=?;";
-		companyList= jdbcTemplate.queryForList(sql, Company.class, new Object[] {portfolio, isPDExpired});
-		return companyList;
-	}
-
-
-	@Override
-	public void deleteCompany(Long companyId) {
+	public void deleteCompany(String companyId) {
 		String sql= "DELETE C FROM COMPANY WHERE C.comp_id_pkey=?;";
 		int flag= jdbcTemplate.update(sql, new Object[] {companyId});
 		System.out.println(flag);
@@ -97,18 +85,40 @@ public class CompaniesDaoImpl implements CompaniesDao {
 
 
 	@Override
-	public List<Company> getAllCompanies() {
-		String sql= "SELECT * FROM COMPANY;";
-		List<Company> companyList= new ArrayList<>();
-		companyList= jdbcTemplate.queryForList(sql, Company.class);
-		return companyList;
+	public CompanyFinancials getCompanyFinancials(String companyId) {
+		CompanyFinancials cf= new CompanyFinancials();
+		cfdao.setPDDetails(cf, companyId);
+		cfdao.setFinancialStatementDetails(cf, companyId);	
+		return cf;
+
 	}
 
 
 	@Override
-	public void updateCompany(@Valid Company company) {
+	public void update(String companyId, @Valid Company company) {
+		/*
+		 * String sql= "UPDATE company SET comp_id_pkey = ?, comp_elmt_id_fkey = ?, " +
+		 * "comp_usgrp_id_fkey = ?, comp_portfolio = ?, comp_model =?, comp_name =?, comp_sector = ?, "
+		 * +
+		 * "comp_group_id_fkey =?, comp_lock_mask = ?, comp_creation_date =?, comp_creation_user_id_fkey = ?, "
+		 * +
+		 * "comp_modification_date =?, comp_modification_user_id_fkey =?, comp_id_number = ?, comp_bankscope_id =?, "
+		 * +
+		 * "comp_domicile_country_iso =?, comp_analyst_user_id_fkey =?, comp_spread_type = ?, comp_type =?, comp_workflow_status = ?, "
+		 * +
+		 * "comp_statement_key = ?, comp_finance_sector = ?, comp_finance_sub_sector ?, comp_last_pd_rating = ?, comp_layout_format =?, "
+		 * +
+		 * "comp_has_archives = ?, comp_has_approved_archives = ?, comp_file_to_import = ?, comp_govt_support_type = ?, "
+		 * +
+		 * "comp_govt_support_yesno = ?, comp_operation_country_iso = ?, comp_construction_country_iso =  WHERE comp_id_number = ?"
+		 * ;
+		 */
+		String sql= "UPDATE COMPANY C SET comp_id_pkey=? , comp_name=?, comp_id_number=?, comp_domicile_country_iso=?";
 		
+		Object[] params= {company.getCompanyId(), company.getCompanyName(), company.getCompanyIdNumber(), company.getCompanyDomicileCountryIso()};
+		
+		jdbcTemplate.update(sql, params);
 	}
 
-	
+
 }

@@ -96,7 +96,6 @@
         <version>1.8.0</version>  
         <configuration> 
           <schemaVersion>V2</schemaVersion>  
-          <subscriptionId>40c44720-13d4-4944-9f08-50b0c16c445f</subscriptionId>
           <resourceGroup>factcuid-rg</resourceGroup>  
           <appName>factcuid</appName>  
           <pricingTier>F1</pricingTier>  

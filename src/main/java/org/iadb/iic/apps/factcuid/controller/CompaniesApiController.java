@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.iadb.iic.apps.factcuid.model.Company;
+import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 import org.iadb.iic.apps.factcuid.service.CompaniesApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpStatusCodeException;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,43 +53,18 @@ public class CompaniesApiController implements CompaniesApi {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	@Override
-	public ResponseEntity<Void> addCompany(@Valid Company company) {
-		
-		cas.addCompany(company);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
-	@Override
-	public ResponseEntity<Void> deleteCompany(Long companyId, String apiKey) {
+	public ResponseEntity<Void> deleteCompany(String companyId, String apiKey) {
 		cas.deleteCompany(companyId);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	@Override
-	public ResponseEntity<List<Company>> findCompaniessByParams( @NotNull @Valid String portfolio, @Valid Boolean isPDExpired) {
-		List<Company> companyList= new ArrayList<>();
-		companyList= cas.getCompanyListByParams(portfolio, isPDExpired);
-		String accept = request.getHeader("Accept");
-			
-		if (accept != null && accept.contains("application/json")) {
-			try {
-				return new ResponseEntity<List<Company>>(objectMapper.readValue(new Gson().toJson(companyList), new TypeReference<List<Company>>() {
-				}) , HttpStatus.OK) ;
-			} catch (IOException e) {
-				log.error("Couldn't serialize response for content type application/json", e);
-				return new ResponseEntity<List<Company>>(HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		}
-		return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
-	}
 
 	@Override
-	public ResponseEntity<Company> getCompanyById(Long companyId) {
+	public ResponseEntity<Company> getCompany(String companyId) {
 		String accept = request.getHeader("Accept");
 		Company comp= cas.getCompanyById(companyId);
 		if(comp==null)
-			return new ResponseEntity<Company>(HttpStatus.NOT_IMPLEMENTED);
+			return new ResponseEntity<Company>(HttpStatus.NOT_FOUND);
 		else {
 			
 			if (accept != null && accept.contains("application/json")) {
@@ -99,23 +76,30 @@ public class CompaniesApiController implements CompaniesApi {
 				}
 			}
 		}
-		return new ResponseEntity<Company>(HttpStatus.NOT_IMPLEMENTED);
+		return new ResponseEntity<Company>(HttpStatus.NOT_FOUND);
 	}
 
 	@Override
-	public ResponseEntity<List<Company>> getCompanyList() {
-		return new ResponseEntity<List<Company>>(cas.getAllCompanies(), HttpStatus.OK);
+	public ResponseEntity<CompanyFinancials> getCompanyFinancials(String companyId) {
+		if(cas.getCompanyById(companyId)!=null) {
+			cas.getCompanyFinancials(companyId);
+			return new ResponseEntity<CompanyFinancials>(HttpStatus.OK);
+		}
+		return new ResponseEntity<CompanyFinancials>(HttpStatus.NOT_FOUND);
 	}
 
 	@Override
-	public ResponseEntity<Void> partialUpdateCompany(Long companyId, @Valid Company company) {
-		return new ResponseEntity<Void>(HttpStatus.OK);
+	public ResponseEntity<Void> postCompany(@Valid Company body) {
+		cas.addCompany(body);
+		return new ResponseEntity<>(HttpStatus.OK); // return factid of company here
 	}
 
 	@Override
-	public ResponseEntity<Void> updateCompany(@Valid Company company) {
-		cas.updateCompany(company);
-		return new ResponseEntity<Void>(HttpStatus.OK);
+	public ResponseEntity<Void> updateCompany(String companyId, @Valid Company body) {
+		if(cas.getCompanyById(companyId)!=null) {
+			cas.updateCompany(companyId, body);
+		}
+			return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 }
