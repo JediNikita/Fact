@@ -8,7 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
-public class PDResultSetExtractor implements ResultSetExtractor {
+public class PDResultSetExtractor implements ResultSetExtractor<CompanyFinancials> {
 
 	@Override
 	public CompanyFinancials extractData(ResultSet rs) throws SQLException, DataAccessException {

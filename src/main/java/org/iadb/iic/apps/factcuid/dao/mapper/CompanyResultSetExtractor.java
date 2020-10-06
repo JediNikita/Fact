@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import org.iadb.iic.apps.factcuid.model.Company;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-public class CompanyResultSetExtractor implements ResultSetExtractor{
+public class CompanyResultSetExtractor implements ResultSetExtractor<Company>{
 	
-	public Object extractData(ResultSet rs) throws SQLException {
+	public Company extractData(ResultSet rs) throws SQLException {
 		Company comp= new Company();
 		while(rs.next()) {
 			comp.setCompanyIdNumber(rs.getString("comp_id_number"));

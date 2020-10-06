@@ -7,7 +7,7 @@ import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-public class FinancialStatementResultSetExtractor implements ResultSetExtractor{
+public class FinancialStatementResultSetExtractor implements ResultSetExtractor<CompanyFinancials>{
 
 	@Override
 	public CompanyFinancials extractData(ResultSet rs) throws SQLException, DataAccessException {

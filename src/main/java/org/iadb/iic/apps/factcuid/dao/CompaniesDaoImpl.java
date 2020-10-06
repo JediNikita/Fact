@@ -1,5 +1,7 @@
 package org.iadb.iic.apps.factcuid.dao;
 
+import java.sql.Date;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,14 +65,19 @@ public class CompaniesDaoImpl implements CompaniesDao {
 				+ "                        comp_construction_country_iso\r\n"
 				+ "                    )\r\n"
 				+ "                    VALUES ();";
-
+		
+		Object[] params= {company.getCompanyId(),null ,null , "VLD_PORTFOLIO_R1", "", company.getCompanyName(), "",null,"0000000000000000000000000000",
+				new java.util.Date(), "12", new java.util.Date(), "12", company.getCompanyIdNumber(),"" , company.getCompanyDomicileCountryIso(),
+				null, "",null, null, null, null, null, null, null, null, null, null, null, null, null, null};
+		
+		jdbcTemplate.update(sql, params);
 	}
 
 
 	@Override
 	public Company getCompanyById(String companyId) {
 		String sql= "SELECT * FROM COMPANY C WHERE C.comp_id_number=?;";
-		Company comp= (Company) jdbcTemplate.queryForObject(sql, new Object[] {companyId}, new CompanyRowMapper());
+		Company comp=  jdbcTemplate.queryForObject(sql, new Object[] {companyId}, new int[] {Types.VARCHAR}, new CompanyRowMapper());
 		System.out.println(comp);
 		return comp;
 	}
@@ -78,7 +85,7 @@ public class CompaniesDaoImpl implements CompaniesDao {
 
 	@Override
 	public void deleteCompany(String companyId) {
-		String sql= "DELETE C FROM COMPANY WHERE C.comp_id_pkey=?;";
+		String sql= "DELETE C FROM COMPANY WHERE C.comp_id_number=?;";
 		int flag= jdbcTemplate.update(sql, new Object[] {companyId});
 		System.out.println(flag);
 	}

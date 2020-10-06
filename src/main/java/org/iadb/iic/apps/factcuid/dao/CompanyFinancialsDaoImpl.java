@@ -25,7 +25,7 @@ public class CompanyFinancialsDaoImpl implements CompanyFinancialsDao{
 	@Override
 	public CompanyFinancials setFinancialStatementDetails(CompanyFinancials cf, String companyId) {
 		String sql=  "SELECT * FROM FINANCIAL_STATEMENT FS where FS.COMPANY_ID=?;";
-		cf= (CompanyFinancials) jdbcTemplate.query(sql, new Object[] {companyId}, new FinancialStatementRowMapper());
+		List<CompanyFinancials> list= jdbcTemplate.query(sql, new Object[] {companyId}, new FinancialStatementRowMapper());
 		return cf;
 	}
 
