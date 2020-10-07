@@ -19,7 +19,7 @@ public class Project   {
   private Integer projId = null;
 
   @JsonProperty("companyId")
-  private String companyId = null;
+  private Integer companyId = null;
 
   @JsonProperty("projName")
   private String projName = null;
@@ -61,7 +61,7 @@ public class Project   {
     this.projId = projId;
   }
 
-  public Project companyId(String companyId) {
+  public Project companyId(int companyId) {
     this.companyId = companyId;
     return this;
   }
@@ -72,11 +72,11 @@ public class Project   {
   **/
   @ApiModelProperty(value = "")
   
-    public String getCompanyId() {
+    public int getCompanyId() {
     return companyId;
   }
 
-  public void setCompanyId(String companyId) {
+  public void setCompanyId(int companyId) {
     this.companyId = companyId;
   }
 

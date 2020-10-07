@@ -77,8 +77,11 @@ public class FacilityApiController implements FacilityApi {
 	public ResponseEntity<Void> postFacility(@ApiParam(value = "Facility details"  )  @Valid @RequestBody RiskFacility body
 ) {
         String accept = request.getHeader("Accept");
-        fas.postFacility(body);
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        if (accept != null && accept.contains("application/json")) {
+        	fas.postFacility(body);
+			return new ResponseEntity<>(HttpStatus.OK); 
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

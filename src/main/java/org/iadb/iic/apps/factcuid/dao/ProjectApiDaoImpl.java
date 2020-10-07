@@ -18,7 +18,7 @@ public class ProjectApiDaoImpl implements ProjectApiDao {
 	
 	@Override
 	public Project getProject(Integer projId) {
-		String sql= "SELECT * FROM PROJECT P WHERE P.PROJ_NUMBER=? ;";
+		String sql= "SELECT * FROM PROJECT P WHERE P.proj_id_pkey=? ;";
 		Project project= jdbcTemplate.query(sql, new Object[] {projId}, new ProjectResultSetExtractor());
 		System.out.println(project);
 		return project;
@@ -35,7 +35,7 @@ public class ProjectApiDaoImpl implements ProjectApiDao {
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);" ;
 		
 		Object params[] = {body.getProjId(), body.getProjId().toString(),"12", new Date(), "12", new Date(), "000000000000000000000000",
-				null, body.getCompanyId(),body.getProjName(), "VLD_PROJECT_STATUS_R1", "VLD_ACTIVE_INACTIVE_R1", null, null, 
+				null, body.getCompanyId(),body.getProjName(), "VLD_PROJECT_STATUS_R1", body.getProjNumber(), "VLD_ACTIVE_INACTIVE_R1", null, null, 
 				new Date(), null, null, null, null, null, body.getProjOperationNumber(), body.getProjOpusSector(), body.getProjOpusSection(), 
 				body.getProjOpusOtherCompCount(), body.getProjTeamLeader()};
 		

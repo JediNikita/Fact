@@ -28,23 +28,12 @@ public class CompaniesApiController implements CompaniesApi {
 	@Autowired
 	private CompaniesApiService cas;
 
-	
+
 	@Autowired
 	public CompaniesApiController(ObjectMapper objectMapper, HttpServletRequest request) {
 		this.objectMapper = objectMapper;
 		this.request = request;
 	}
-
-	@RequestMapping(value="/", method= RequestMethod.GET)
-	public ResponseEntity<Void> showHello(){
-		return new ResponseEntity<Void>(HttpStatus.OK);
-	}
-
-	public ResponseEntity<Void> deleteCompany(String companyId, String apiKey) {
-		cas.deleteCompany(companyId);
-		return new ResponseEntity<Void>(HttpStatus.OK);
-	}
-
 
 	@Override
 	public ResponseEntity<Company> getCompany(String companyId) {
@@ -53,7 +42,7 @@ public class CompaniesApiController implements CompaniesApi {
 		if(comp==null)
 			return new ResponseEntity<Company>(HttpStatus.NOT_FOUND);
 		else {
-			
+
 			if (accept != null && accept.contains("application/json")) {
 				try {
 					return new ResponseEntity<Company>(objectMapper.readValue(new Gson().toJson(comp), Company.class), HttpStatus.OK);
@@ -68,25 +57,45 @@ public class CompaniesApiController implements CompaniesApi {
 
 	@Override
 	public ResponseEntity<CompanyFinancials> getCompanyFinancials(String companyId) {
-		if(cas.getCompanyById(companyId)!=null) {
-			cas.getCompanyFinancials(companyId);
-			return new ResponseEntity<CompanyFinancials>(HttpStatus.OK);
+		String accept = request.getHeader("Accept");
+		if (accept != null && accept.contains("application/json")) {
+		
+				CompanyFinancials compfin= cas.getCompanyFinancials(companyId);
+				if(compfin==null)
+					return new ResponseEntity<CompanyFinancials>(HttpStatus.NOT_FOUND);
+				else
+					try {
+						return new ResponseEntity<CompanyFinancials>(objectMapper.readValue(new Gson().toJson(compfin), CompanyFinancials.class), HttpStatus.OK);
+					} catch (IOException e) {
+						log.error("Couldn't serialize response for content type application/json", e);
+						return new ResponseEntity<CompanyFinancials>(HttpStatus.INTERNAL_SERVER_ERROR);
+					}
+				
+			
 		}
 		return new ResponseEntity<CompanyFinancials>(HttpStatus.NOT_FOUND);
 	}
 
 	@Override
 	public ResponseEntity<Void> postCompany(@Valid Company body) {
-		cas.addCompany(body);
-		return new ResponseEntity<>(HttpStatus.OK); // return factid of company here
+		String accept = request.getHeader("Accept");
+		if (accept != null && accept.contains("application/json")) {
+			cas.addCompany(body);
+			return new ResponseEntity<>(HttpStatus.OK); 
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
 	@Override
 	public ResponseEntity<Void> updateCompany(String companyId, @Valid Company body) {
-		if(cas.getCompanyById(companyId)!=null) {
-			cas.updateCompany(companyId, body);
+		String accept = request.getHeader("Accept");
+		if (accept != null && accept.contains("application/json")) {
+			if(cas.getCompanyById(companyId)!=null) {
+				cas.updateCompany(companyId, body);
+				return new ResponseEntity<Void>(HttpStatus.OK);
+			}
 		}
-			return new ResponseEntity<Void>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
 }

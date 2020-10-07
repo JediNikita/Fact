@@ -18,7 +18,7 @@ public class CompaniesDaoImpl implements CompaniesDao {
 	private CompanyFinancialsDao cfdao;
 
 	@Override
-	public void addCompany(@Valid Company company) {
+	public int addCompany(@Valid Company company) {
 		String sql = "INSERT INTO company (\r\n"
 				+ "                        comp_id_pkey,\r\n"
 				+ "                        comp_elmt_id_fkey,\r\n"
@@ -60,14 +60,14 @@ public class CompaniesDaoImpl implements CompaniesDao {
 				null, "",null, null, null, null, null, null, null, null, null, null, null, null, null, null};
 		
 		jdbcTemplate.update(sql, params);
+		return company.getCompanyId();
 	}
 
 
 	@Override
 	public Company getCompanyById(String companyId) {
-		String sql= "SELECT * FROM COMPANY C WHERE C.comp_id_number=?;";
+		String sql= "SELECT * FROM COMPANY C WHERE C.comp_id_pkey=?;";
 		Company comp=  jdbcTemplate.queryForObject(sql, new Object[] {companyId}, new CompanyRowMapper());
-		System.out.println(comp);
 		return comp;
 	}
 
@@ -90,26 +90,10 @@ public class CompaniesDaoImpl implements CompaniesDao {
 
 	@Override
 	public void update(String companyId, @Valid Company company) {
-		/*
-		 * String sql= "UPDATE company SET comp_id_pkey = ?, comp_elmt_id_fkey = ?, " +
-		 * "comp_usgrp_id_fkey = ?, comp_portfolio = ?, comp_model =?, comp_name =?, comp_sector = ?, "
-		 * +
-		 * "comp_group_id_fkey =?, comp_lock_mask = ?, comp_creation_date =?, comp_creation_user_id_fkey = ?, "
-		 * +
-		 * "comp_modification_date =?, comp_modification_user_id_fkey =?, comp_id_number = ?, comp_bankscope_id =?, "
-		 * +
-		 * "comp_domicile_country_iso =?, comp_analyst_user_id_fkey =?, comp_spread_type = ?, comp_type =?, comp_workflow_status = ?, "
-		 * +
-		 * "comp_statement_key = ?, comp_finance_sector = ?, comp_finance_sub_sector ?, comp_last_pd_rating = ?, comp_layout_format =?, "
-		 * +
-		 * "comp_has_archives = ?, comp_has_approved_archives = ?, comp_file_to_import = ?, comp_govt_support_type = ?, "
-		 * +
-		 * "comp_govt_support_yesno = ?, comp_operation_country_iso = ?, comp_construction_country_iso =  WHERE comp_id_number = ?"
-		 * ;
-		 */
-		String sql= "UPDATE COMPANY C SET comp_id_pkey=? , comp_name=?, comp_id_number=?, comp_domicile_country_iso=?";
+		String sql= "UPDATE COMPANY SET comp_id_pkey=? , comp_name=?, comp_id_number=?, comp_domicile_country_iso=? where comp_id_pkey=?";
 		
-		Object[] params= {company.getCompanyId(), company.getCompanyName(), company.getCompanyIdNumber(), company.getCompanyDomicileCountryIso()};
+		Object[] params= {company.getCompanyId(), company.getCompanyName(), company.getCompanyIdNumber(), 
+				company.getCompanyDomicileCountryIso(), companyId};
 		
 		jdbcTemplate.update(sql, params);
 	}

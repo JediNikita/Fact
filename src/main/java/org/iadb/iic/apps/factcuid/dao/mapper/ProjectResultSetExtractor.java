@@ -13,7 +13,7 @@ public class ProjectResultSetExtractor implements ResultSetExtractor<Project>{
 	public Project extractData(ResultSet rs) throws SQLException, DataAccessException {
 		Project project = new Project();
 		
-		project.setCompanyId(rs.getString("proj_comp_id_fkey"));
+		project.setCompanyId(rs.getInt("proj_comp_id_fkey"));
 		project.setProjId(rs.getInt("proj_id_pkey"));
 		project.setProjName(rs.getString("proj_name"));
 		project.setProjNumber(rs.getString("proj_number"));

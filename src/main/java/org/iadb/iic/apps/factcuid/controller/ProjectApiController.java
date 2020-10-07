@@ -58,7 +58,10 @@ public class ProjectApiController implements ProjectApi {
     @Override
 	public ResponseEntity<Void> postproject(@Valid Project body) {
         String accept = request.getHeader("Accept");
-        pas.postProject(body);
+        if (accept != null && accept.contains("application/json")) {
+        	pas.postProject(body);
+			return new ResponseEntity<>(HttpStatus.OK); 
+		}
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 

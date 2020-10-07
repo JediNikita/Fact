@@ -48,15 +48,13 @@ public class FacilityDaoImpl implements FacilityDao {
 	@Override
 	public RiskFacilityLGD getFacilityLgd(Integer facilityId) {
 		String sql= "SELECT fac_id_pkey, fac_last_approved_date, fac_final_lgd FROM FACILITY F WHERE F.fac_id_pkey= ?;";
-		jdbcTemplate.query(sql, new Object[] {facilityId}, new RiskFacilityLGDResultSetExtractor());
-		return null;
+		return jdbcTemplate.query(sql, new Object[] {facilityId}, new RiskFacilityLGDResultSetExtractor());
 	}
 
 	@Override
 	public RiskFacility getFacility(Integer facilityId) {
 		String sql= "SELECT * FROM FACILITY F WHERE F.fac_id_pkey= ?;";
-		jdbcTemplate.query(sql, new Object[] {facilityId}, new FacilityResultSetExtractor());
-		return null;
+		return jdbcTemplate.query(sql, new Object[] {facilityId}, new FacilityResultSetExtractor());
 	}
 	
 }

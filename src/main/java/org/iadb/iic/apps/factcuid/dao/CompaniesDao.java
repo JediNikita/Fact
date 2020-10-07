@@ -6,7 +6,7 @@ import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 
 public interface CompaniesDao {
 
-	void addCompany(@Valid Company company);
+	int addCompany(@Valid Company company);
 
 	Company getCompanyById(String companyId);
 

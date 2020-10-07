@@ -25,7 +25,7 @@ public class RiskFacility   {
   private String facLoanNumber = null;
 
   @JsonProperty("facNumber")
-  private String facNumber = null;
+  private Integer facNumber = null;
 
   @JsonProperty("facOpusAmount")
   private Integer facOpusAmount = null;
@@ -90,7 +90,7 @@ public class RiskFacility   {
     this.facLoanNumber = facLoanNumber;
   }
 
-  public RiskFacility facNumber(String facNumber) {
+  public RiskFacility facNumber(Integer facNumber) {
     this.facNumber = facNumber;
     return this;
   }
@@ -101,11 +101,11 @@ public class RiskFacility   {
   **/
   @ApiModelProperty(value = "")
   
-    public String getFacNumber() {
+    public Integer getFacNumber() {
     return facNumber;
   }
 
-  public void setFacNumber(String facNumber) {
+  public void setFacNumber(Integer facNumber) {
     this.facNumber = facNumber;
   }
 
