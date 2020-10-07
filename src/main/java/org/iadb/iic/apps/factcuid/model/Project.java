@@ -61,7 +61,7 @@ public class Project   {
     this.projId = projId;
   }
 
-  public Project companyId(int companyId) {
+  public Project companyId(Integer companyId) {
     this.companyId = companyId;
     return this;
   }
@@ -72,11 +72,11 @@ public class Project   {
   **/
   @ApiModelProperty(value = "")
   
-    public int getCompanyId() {
+    public Integer getCompanyId() {
     return companyId;
   }
 
-  public void setCompanyId(int companyId) {
+  public void setCompanyId(Integer companyId) {
     this.companyId = companyId;
   }
 

@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.iadb.iic.apps.factcuid.controller", "org.iadb.iic.apps.factcuid.model", "org.iadb.iic.apps.factcuid.service"
-		, "org.iadb.iic.apps.factcuid.dao"})
+		, "org.iadb.iic.apps.factcuid.dao", "org.iadb.iic.apps.factcuid.config"})
 public class FactCUIDApplication {
 
 	public static void main(String[] args) {
