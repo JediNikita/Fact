@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 
 public class CompanyResultSetExtractor implements ResultSetExtractor<Company>{
 	
+	@Override
 	public Company extractData(ResultSet rs) throws SQLException {
 		Company comp= new Company();
 		while(rs.next()) {

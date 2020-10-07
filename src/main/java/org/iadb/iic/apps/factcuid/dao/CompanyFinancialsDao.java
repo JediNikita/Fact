@@ -4,7 +4,7 @@ import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 
 public interface CompanyFinancialsDao {
 
-	CompanyFinancials setPDDetails(CompanyFinancials cf, String companyId);
+	CompanyFinancials setPDDetails(String companyId);
 
 	CompanyFinancials setFinancialStatementDetails(CompanyFinancials cf, String companyId);
 

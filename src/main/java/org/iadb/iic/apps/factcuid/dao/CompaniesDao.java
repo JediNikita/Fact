@@ -1,10 +1,6 @@
 package org.iadb.iic.apps.factcuid.dao;
 
-import java.util.List;
-
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 import org.iadb.iic.apps.factcuid.model.Company;
 import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 

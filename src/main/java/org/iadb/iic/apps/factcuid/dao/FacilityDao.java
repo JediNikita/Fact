@@ -6,14 +6,15 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.iadb.iic.apps.factcuid.model.RiskFacility;
+import org.iadb.iic.apps.factcuid.model.RiskFacilityLGD;
 
 public interface FacilityDao {
 
-	List<RiskFacility> findFacilityRatings();
+	void postFacility(@Valid RiskFacility body);
 
-	List<RiskFacility> findFacilityRatingByPeriod(@NotNull @Valid String periodo);
+	RiskFacilityLGD getFacilityLgd(Integer facilityId);
 
-	RiskFacility findFacilityRatingByIdAndPeriod(String facilityId, @NotNull @Valid String periodo);
+	RiskFacility getFacility(Integer facilityId);
 
 
 }

@@ -14,17 +14,20 @@ public class FinancialStatementResultSetExtractor implements ResultSetExtractor<
 		CompanyFinancials cf= new CompanyFinancials();
 		while(rs.next())
 		{
-			switch (rs.getString("FINANCIAL_TYPE")) {
-				case "NETSALES":
+			switch ((rs.getString("FINANCIAL_TYPE")).toUpperCase()) {
+				case "NETSALES" :
+				case "SPBANKNETINCOME":
 					cf.setNetIncome(rs.getDouble("FINANCIAL_VALUE"));
 					cf.setNetIncomeValidDate(rs.getString("PERIOD"));
-				case "TotalAssets":
+				case "TOTALASSETS":
 					cf.setTotalAssets(rs.getDouble("FINANCIAL_VALUE"));
 					cf.setTotalAssetsValidDate(rs.getString("PERIOD"));
-				case "TotalRevenues":
+				case "TOTALREVENUES":
+				case "SPBANKTOTALOPERATINGREVENUE":
 					cf.setTotalRevenue(rs.getDouble("FINANCIAL_VALUE"));
 					cf.setTotalRevenueValidDate(rs.getString("PERIOD"));
-				case "TotalShareholdersEquity":
+				case "TOTALSHAREHOLDERSEQUITY":
+				case "BANKTOTALEQUITY":
 					cf.setTotalEquity(rs.getDouble("FINANCIAL_VALUE"));
 					cf.setTotalEquityValidDate(rs.getString("PERIOD"));
 			}

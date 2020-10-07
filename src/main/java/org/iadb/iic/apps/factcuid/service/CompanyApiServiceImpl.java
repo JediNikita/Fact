@@ -1,12 +1,6 @@
 package org.iadb.iic.apps.factcuid.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ConcurrentMap;
-
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 import org.iadb.iic.apps.factcuid.dao.CompaniesDao;
 import org.iadb.iic.apps.factcuid.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,7 @@
 package org.iadb.iic.apps.factcuid.dao;
 
-import java.util.List;
-
-import org.iadb.iic.apps.factcuid.dao.mapper.FinancialStatementRowMapper;
-import org.iadb.iic.apps.factcuid.dao.mapper.PDRowMapper;
+import org.iadb.iic.apps.factcuid.dao.mapper.FinancialStatementResultSetExtractor;
+import org.iadb.iic.apps.factcuid.dao.mapper.PDResultSetExtractor;
 import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,16 +14,26 @@ public class CompanyFinancialsDaoImpl implements CompanyFinancialsDao{
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public CompanyFinancials setPDDetails(CompanyFinancials cf, String companyId) {
+	public CompanyFinancials setPDDetails(String companyId) {
+		CompanyFinancials cf= new CompanyFinancials();
 		String sql=  "SELECT * FROM pd where pd.COMPANY_ID=?;";
-		List<CompanyFinancials> list= jdbcTemplate.query(sql, new Object[] {companyId}, new PDRowMapper());
+		cf= jdbcTemplate.query(sql, new Object[] {companyId}, new PDResultSetExtractor());
+		setFinancialStatementDetails(cf,companyId);
 		return cf;
 	}
 
 	@Override
 	public CompanyFinancials setFinancialStatementDetails(CompanyFinancials cf, String companyId) {
 		String sql=  "SELECT * FROM FINANCIAL_STATEMENT FS where FS.COMPANY_ID=?;";
-		List<CompanyFinancials> list= jdbcTemplate.query(sql, new Object[] {companyId}, new FinancialStatementRowMapper());
+		CompanyFinancials temp= jdbcTemplate.query(sql, new Object[] {companyId}, new FinancialStatementResultSetExtractor());
+		cf.setNetIncome(temp.getNetIncome());
+		cf.setNetIncomeValidDate(temp.getNetIncomeValidDate());
+		cf.setTotalAssets(temp.getTotalAssets());
+		cf.setTotalAssetsValidDate(temp.getTotalAssetsValidDate());
+		cf.setTotalEquity(temp.getTotalEquity());
+		cf.setTotalEquityValidDate(temp.getTotalEquityValidDate());
+		cf.setTotalRevenue(temp.getTotalRevenue());
+		cf.setTotalRevenueValidDate(temp.getTotalRevenueValidDate());
 		return cf;
 	}
 

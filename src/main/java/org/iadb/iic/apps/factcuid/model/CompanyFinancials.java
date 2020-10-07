@@ -2,17 +2,11 @@ package org.iadb.iic.apps.factcuid.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * CompanyFinancials
@@ -41,10 +35,10 @@ public class CompanyFinancials   {
   private Integer isExpired = null;
 
   @JsonProperty("expirationDate")
-  private Timestamp expirationDate = null;
+  private String expirationDate = null;
 
   @JsonProperty("approvedDateTime")
-  private Timestamp approvedDateTime = null;
+  private String approvedDateTime = null;
 
   @JsonProperty("lastPDRating")
   private String lastPDRating = null;
@@ -188,7 +182,7 @@ public class CompanyFinancials   {
     this.isExpired = isExpired;
   }
 
-  public CompanyFinancials expirationDate(Timestamp expirationDate) {
+  public CompanyFinancials expirationDate(String expirationDate) {
     this.expirationDate = expirationDate;
     return this;
   }
@@ -199,15 +193,15 @@ public class CompanyFinancials   {
   **/
   @ApiModelProperty(value = "")
   
-    public Timestamp getExpirationDate() {
+    public String getExpirationDate() {
     return expirationDate;
   }
 
-  public void setExpirationDate(Timestamp expirationDate) {
+  public void setExpirationDate(String expirationDate) {
     this.expirationDate = expirationDate;
   }
 
-  public CompanyFinancials approvedDateTime(Timestamp approvedDateTime) {
+  public CompanyFinancials approvedDateTime(String approvedDateTime) {
     this.approvedDateTime = approvedDateTime;
     return this;
   }
@@ -218,11 +212,11 @@ public class CompanyFinancials   {
   **/
   @ApiModelProperty(value = "")
   
-    public Timestamp getApprovedDateTime() {
+    public String getApprovedDateTime() {
     return approvedDateTime;
   }
 
-  public void setApprovedDateTime(Timestamp approvedDateTime) {
+  public void setApprovedDateTime(String approvedDateTime) {
     this.approvedDateTime = approvedDateTime;
   }
 

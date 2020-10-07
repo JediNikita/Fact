@@ -1,21 +1,10 @@
 package org.iadb.iic.apps.factcuid.dao;
 
-import java.sql.Date;
-import java.sql.Types;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import org.iadb.iic.apps.factcuid.dao.mapper.PDResultSetExtractor;
-import org.iadb.iic.apps.factcuid.dao.mapper.PDRowMapper;
-import org.iadb.iic.apps.factcuid.dao.mapper.CompanyResultSetExtractor;
 import org.iadb.iic.apps.factcuid.dao.mapper.CompanyRowMapper;
 import org.iadb.iic.apps.factcuid.model.Company;
 import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -64,7 +53,7 @@ public class CompaniesDaoImpl implements CompaniesDao {
 				+ "                        comp_operation_country_iso,\r\n"
 				+ "                        comp_construction_country_iso\r\n"
 				+ "                    )\r\n"
-				+ "                    VALUES ();";
+				+ "                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		
 		Object[] params= {company.getCompanyId(),null ,null , "VLD_PORTFOLIO_R1", "", company.getCompanyName(), "",null,"0000000000000000000000000000",
 				new java.util.Date(), "12", new java.util.Date(), "12", company.getCompanyIdNumber(),"" , company.getCompanyDomicileCountryIso(),
@@ -77,7 +66,7 @@ public class CompaniesDaoImpl implements CompaniesDao {
 	@Override
 	public Company getCompanyById(String companyId) {
 		String sql= "SELECT * FROM COMPANY C WHERE C.comp_id_number=?;";
-		Company comp=  jdbcTemplate.queryForObject(sql, new Object[] {companyId}, new int[] {Types.VARCHAR}, new CompanyRowMapper());
+		Company comp=  jdbcTemplate.queryForObject(sql, new Object[] {companyId}, new CompanyRowMapper());
 		System.out.println(comp);
 		return comp;
 	}
@@ -94,10 +83,8 @@ public class CompaniesDaoImpl implements CompaniesDao {
 	@Override
 	public CompanyFinancials getCompanyFinancials(String companyId) {
 		CompanyFinancials cf= new CompanyFinancials();
-		cfdao.setPDDetails(cf, companyId);
-		cfdao.setFinancialStatementDetails(cf, companyId);	
+		cf=cfdao.setPDDetails(companyId);
 		return cf;
-
 	}
 
 
