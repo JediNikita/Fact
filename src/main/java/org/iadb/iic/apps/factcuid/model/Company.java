@@ -16,7 +16,7 @@ import org.springframework.validation.annotation.Validated;
 
 public class Company   {
   @JsonProperty("companyId")
-  private int companyId = 0;
+  private Integer companyId = null;
 
   @JsonProperty("companyIdNumber")
   private String companyIdNumber = null;
@@ -27,7 +27,7 @@ public class Company   {
   @JsonProperty("companyDomicileCountryIso")
   private String companyDomicileCountryIso = null;
 
-  public Company companyId(int companyId) {
+  public Company companyId(Integer companyId) {
     this.companyId = companyId;
     return this;
   }
@@ -38,11 +38,11 @@ public class Company   {
   **/
   @ApiModelProperty(value = "")
   
-    public int getCompanyId() {
+    public Integer getCompanyId() {
     return companyId;
   }
 
-  public void setCompanyId(int companyId) {
+  public void setCompanyId(Integer companyId) {
     this.companyId = companyId;
   }
 

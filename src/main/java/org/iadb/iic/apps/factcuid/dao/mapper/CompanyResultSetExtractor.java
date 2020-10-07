@@ -4,14 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.iadb.iic.apps.factcuid.model.Company;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 public class CompanyResultSetExtractor implements ResultSetExtractor<Company>{
-	
+
 	@Override
-	public Company extractData(ResultSet rs) throws SQLException {
+	public Company extractData(ResultSet rs) throws SQLException,DataAccessException {
 		Company comp= new Company();
-		while(rs.next()) {
+		while(rs.next())
+		{
 			comp.setCompanyIdNumber(rs.getString("comp_id_number"));
 			comp.setCompanyId(rs.getInt("comp_id_pkey"));
 			comp.setCompanyDomicileCountryIso(rs.getString("comp_domicile_country_iso"));

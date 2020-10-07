@@ -39,10 +39,9 @@ public class CompaniesApiController implements CompaniesApi {
 	public ResponseEntity<Company> getCompany(String companyId) {
 		String accept = request.getHeader("Accept");
 		Company comp= cas.getCompanyById(companyId);
-		if(comp==null)
+		if(comp.getCompanyId()==null)
 			return new ResponseEntity<Company>(HttpStatus.NOT_FOUND);
 		else {
-
 			if (accept != null && accept.contains("application/json")) {
 				try {
 					return new ResponseEntity<Company>(objectMapper.readValue(new Gson().toJson(comp), Company.class), HttpStatus.OK);
@@ -51,15 +50,15 @@ public class CompaniesApiController implements CompaniesApi {
 					return new ResponseEntity<Company>(HttpStatus.INTERNAL_SERVER_ERROR);
 				}
 			}
+			else 
+				return new ResponseEntity<Company>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Company>(HttpStatus.NOT_FOUND);
 	}
 
 	@Override
 	public ResponseEntity<CompanyFinancials> getCompanyFinancials(String companyId) {
 		String accept = request.getHeader("Accept");
 		if (accept != null && accept.contains("application/json")) {
-		
 				CompanyFinancials compfin= cas.getCompanyFinancials(companyId);
 				if(compfin==null)
 					return new ResponseEntity<CompanyFinancials>(HttpStatus.NOT_FOUND);
@@ -70,10 +69,9 @@ public class CompaniesApiController implements CompaniesApi {
 						log.error("Couldn't serialize response for content type application/json", e);
 						return new ResponseEntity<CompanyFinancials>(HttpStatus.INTERNAL_SERVER_ERROR);
 					}
-				
-			
 		}
-		return new ResponseEntity<CompanyFinancials>(HttpStatus.NOT_FOUND);
+		else
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
 	@Override
@@ -83,7 +81,8 @@ public class CompaniesApiController implements CompaniesApi {
 			cas.addCompany(body);
 			return new ResponseEntity<>(HttpStatus.OK); 
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+		else
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
 	@Override
@@ -94,8 +93,11 @@ public class CompaniesApiController implements CompaniesApi {
 				cas.updateCompany(companyId, body);
 				return new ResponseEntity<Void>(HttpStatus.OK);
 			}
+			else
+				return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+		else
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
 }

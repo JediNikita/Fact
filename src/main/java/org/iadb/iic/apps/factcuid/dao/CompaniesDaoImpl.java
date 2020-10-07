@@ -1,6 +1,8 @@
 package org.iadb.iic.apps.factcuid.dao;
 
 import javax.validation.Valid;
+
+import org.iadb.iic.apps.factcuid.dao.mapper.CompanyResultSetExtractor;
 import org.iadb.iic.apps.factcuid.dao.mapper.CompanyRowMapper;
 import org.iadb.iic.apps.factcuid.model.Company;
 import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
@@ -67,7 +69,7 @@ public class CompaniesDaoImpl implements CompaniesDao {
 	@Override
 	public Company getCompanyById(String companyId) {
 		String sql= "SELECT * FROM COMPANY C WHERE C.comp_id_pkey=?;";
-		Company comp=  jdbcTemplate.queryForObject(sql, new Object[] {companyId}, new CompanyRowMapper());
+		Company comp=  jdbcTemplate.query(sql, new Object[] {companyId}, new CompanyResultSetExtractor());
 		return comp;
 	}
 

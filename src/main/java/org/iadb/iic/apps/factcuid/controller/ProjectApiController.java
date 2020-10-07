@@ -25,46 +25,51 @@ import java.io.IOException;
 @RestController
 public class ProjectApiController implements ProjectApi {
 
-    private static final Logger log = LoggerFactory.getLogger(ProjectApiController.class);
+	private static final Logger log = LoggerFactory.getLogger(ProjectApiController.class);
 
-    private final ObjectMapper objectMapper;
+	private final ObjectMapper objectMapper;
 
-    private final HttpServletRequest request;
-    
-    @Autowired
-    private ProjectApiService pas;
+	private final HttpServletRequest request;
 
-    @org.springframework.beans.factory.annotation.Autowired
-    public ProjectApiController(ObjectMapper objectMapper, HttpServletRequest request) {
-        this.objectMapper = objectMapper;
-        this.request = request;
-    }
+	@Autowired
+	private ProjectApiService pas;
 
-    @Override
+	@org.springframework.beans.factory.annotation.Autowired
+	public ProjectApiController(ObjectMapper objectMapper, HttpServletRequest request) {
+		this.objectMapper = objectMapper;
+		this.request = request;
+	}
+
+	@Override
 	public ResponseEntity<Project> getProject(@ApiParam(value = "Fact Project Id",required=true) @PathVariable("projId") Integer projId
-) {
-        String accept = request.getHeader("Accept");
-        Project project= pas.getProject(projId);
-        if (accept != null && accept.contains("application/json")) {
-            try {
-            	return new ResponseEntity<Project>(objectMapper.readValue(new Gson().toJson(project), Project.class), HttpStatus.OK);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Project>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
+			) {
+		String accept = request.getHeader("Accept");
+		Project project= pas.getProject(projId);
+		if(project.getProjId()==null)
+			return new ResponseEntity<Project>(HttpStatus.NOT_FOUND);
+		else
+		{
+			if (accept != null && accept.contains("application/json")) {
+				try {
+					return new ResponseEntity<Project>(objectMapper.readValue(new Gson().toJson(project), Project.class), HttpStatus.OK);
+				} catch (IOException e) {
+					log.error("Couldn't serialize response for content type application/json", e);
+					return new ResponseEntity<Project>(HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+			}
+			else
+				return new ResponseEntity<Project>(HttpStatus.NOT_IMPLEMENTED);
+		}
+	}
 
-        return new ResponseEntity<Project>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
+	@Override
 	public ResponseEntity<Void> postproject(@Valid Project body) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-        	pas.postProject(body);
+		String accept = request.getHeader("Accept");
+		if (accept != null && accept.contains("application/json")) {
+			pas.postProject(body);
 			return new ResponseEntity<>(HttpStatus.OK); 
 		}
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-    }
+		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+	}
 
 }
