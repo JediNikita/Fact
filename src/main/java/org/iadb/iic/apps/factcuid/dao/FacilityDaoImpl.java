@@ -1,20 +1,13 @@
 package org.iadb.iic.apps.factcuid.dao;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import org.iadb.iic.apps.factcuid.dao.mapper.CommonResultSetExtractor;
 import org.iadb.iic.apps.factcuid.dao.mapper.FacilityResultSetExtractor;
 import org.iadb.iic.apps.factcuid.dao.mapper.RiskFacilityLGDResultSetExtractor;
 import org.iadb.iic.apps.factcuid.model.RiskFacility;
 import org.iadb.iic.apps.factcuid.model.RiskFacilityLGD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 @Repository

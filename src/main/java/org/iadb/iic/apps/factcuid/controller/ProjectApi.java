@@ -9,7 +9,6 @@ import io.swagger.annotations.*;
 
 import javax.validation.Valid;
 
-import org.iadb.iic.apps.factcuid.model.Company;
 import org.iadb.iic.apps.factcuid.model.Project;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +24,8 @@ public interface ProjectApi {
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Project details", response = Project.class),
-        @ApiResponse(code = 400, message = ""),
-        @ApiResponse(code = 404, message = "") })
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 404, message = "Not Found") })
     @RequestMapping(value = "/project/{projId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
@@ -38,14 +37,14 @@ public interface ProjectApi {
         @Authorization(value = "apiKeyHeader"),
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = ""),
-        @ApiResponse(code = 400, message = ""),
-        @ApiResponse(code = 409, message = "") })
+        @ApiResponse(code = 201, message = "Created"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 409, message = "Conflict") })
     @RequestMapping(value = "/project",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> postproject(@ApiParam(value = ""  )  @Valid @RequestBody Project body);
+    ResponseEntity<Void> postproject(@ApiParam(value = "Project Details"  )  @Valid @RequestBody Project body);
 
 }
 

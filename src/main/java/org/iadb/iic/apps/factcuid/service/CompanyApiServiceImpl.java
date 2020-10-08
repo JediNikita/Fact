@@ -14,7 +14,7 @@ public class CompanyApiServiceImpl implements CompaniesApiService {
 	private CompaniesDao compDao;
 	
 	@Override
-	public Company getCompanyById(String companyId) {
+	public Company getCompanyById(int companyId) {
 		return compDao.getCompanyById(companyId);
 	}
 
@@ -24,18 +24,12 @@ public class CompanyApiServiceImpl implements CompaniesApiService {
 	}
 
 	@Override
-	public void deleteCompany(String companyId) {
-		compDao.deleteCompany(companyId);
-		
-	}
-
-	@Override
-	public void updateCompany(String companyId, @Valid Company company) {
+	public void updateCompany(int companyId, @Valid Company company) {
 		compDao.update(companyId, company);
 	}
 
 	@Override
-	public CompanyFinancials getCompanyFinancials(String companyId) {
+	public CompanyFinancials getCompanyFinancials(int companyId) {
 		return compDao.getCompanyFinancials(companyId);
 	}
 

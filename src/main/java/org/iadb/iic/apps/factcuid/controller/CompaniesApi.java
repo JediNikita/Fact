@@ -19,12 +19,12 @@ public interface CompaniesApi {
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Retrieve Company", response = Company.class),
-        @ApiResponse(code = 400, message = ""),
+        @ApiResponse(code = 400, message = "Bad Request"),
         @ApiResponse(code = 404, message = "Company Not Found") })
     @RequestMapping(value = "/companies/{companyId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Company> getCompany(@ApiParam(value = "Fact Company Id",required=true) @PathVariable("companyId") String companyId
+    ResponseEntity<Company> getCompany(@ApiParam(value = "Fact Company Id",required=true) @PathVariable("companyId") int companyId
 );
 
 
@@ -33,12 +33,12 @@ public interface CompaniesApi {
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "PD and Financial Statement", response = CompanyFinancials.class),
-        @ApiResponse(code = 400, message = ""),
-        @ApiResponse(code = 404, message = "") })
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 404, message = "Company Financials Not Found") })
     @RequestMapping(value = "/companies/{companyId}/financials",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<CompanyFinancials> getCompanyFinancials(@ApiParam(value = "Fact Company Id",required=true) @PathVariable("companyId") String companyId
+    ResponseEntity<CompanyFinancials> getCompanyFinancials(@ApiParam(value = "Fact Company Id",required=true) @PathVariable("companyId") int companyId
 );
 
 
@@ -46,14 +46,14 @@ public interface CompaniesApi {
         @Authorization(value = "apiKeyHeader"),
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = ""),
-        @ApiResponse(code = 400, message = ""),
-        @ApiResponse(code = 409, message = "") })
+        @ApiResponse(code = 201, message = "Created"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 409, message = "Conflict") })
     @RequestMapping(value = "/companies",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> postCompany(@ApiParam(value = ""  )  @Valid @RequestBody Company body
+    ResponseEntity<Void> postCompany(@ApiParam(value = "Fact Company Info"  )  @Valid @RequestBody Company body
 );
 
 
@@ -62,12 +62,12 @@ public interface CompaniesApi {
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Success"),
-        @ApiResponse(code = 400, message = ""),
-        @ApiResponse(code = 404, message = "") })
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 404, message = "Company Not Found") })
     @RequestMapping(value = "/companies/{companyId}",
         consumes = { "application/json" },
         method = RequestMethod.PATCH)
-    ResponseEntity<Void> updateCompany(@ApiParam(value = "FACT Company Id",required=true) @PathVariable("companyId") String companyId
+    ResponseEntity<Void> updateCompany(@ApiParam(value = "FACT Company Id",required=true) @PathVariable("companyId") int companyId
 ,@ApiParam(value = "Change Company Details"  )  @Valid @RequestBody Company body
 );
 

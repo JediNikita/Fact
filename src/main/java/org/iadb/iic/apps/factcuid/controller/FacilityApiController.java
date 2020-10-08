@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 
 import io.swagger.annotations.*;
 
-import org.iadb.iic.apps.factcuid.model.Project;
 import org.iadb.iic.apps.factcuid.model.RiskFacility;
 import org.iadb.iic.apps.factcuid.model.RiskFacilityLGD;
 import org.iadb.iic.apps.factcuid.service.FacilityApiService;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,11 +53,11 @@ public class FacilityApiController implements FacilityApi {
 					return new ResponseEntity<RiskFacility>(objectMapper.readValue(new Gson().toJson(facility), RiskFacility.class), HttpStatus.OK);
 				} catch (IOException e) {
 					log.error("Couldn't serialize response for content type application/json", e);
-					return new ResponseEntity<RiskFacility>(HttpStatus.INTERNAL_SERVER_ERROR);
+					return new ResponseEntity<RiskFacility>(HttpStatus.BAD_REQUEST);
 				}
 			}
 			else
-				return new ResponseEntity<RiskFacility>(HttpStatus.NOT_IMPLEMENTED);
+				return new ResponseEntity<RiskFacility>(HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -76,11 +74,11 @@ public class FacilityApiController implements FacilityApi {
 					return new ResponseEntity<RiskFacilityLGD>(objectMapper.readValue(new Gson().toJson(facilityLGD), RiskFacilityLGD.class), HttpStatus.OK);
 				} catch (IOException e) {
 					log.error("Couldn't serialize response for content type application/json", e);
-					return new ResponseEntity<RiskFacilityLGD>(HttpStatus.INTERNAL_SERVER_ERROR);
+					return new ResponseEntity<RiskFacilityLGD>(HttpStatus.BAD_REQUEST);
 				}
 			}
 			else
-				return new ResponseEntity<RiskFacilityLGD>(HttpStatus.NOT_IMPLEMENTED);
+				return new ResponseEntity<RiskFacilityLGD>(HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -88,11 +86,15 @@ public class FacilityApiController implements FacilityApi {
 	public ResponseEntity<Void> postFacility(@ApiParam(value = "Facility details"  )  @Valid @RequestBody RiskFacility body
 			) {
 		String accept = request.getHeader("Accept");
-		if (accept != null && accept.contains("application/json")) {
-			fas.postFacility(body);
-			return new ResponseEntity<>(HttpStatus.OK); 
+		RiskFacility facility= fas.getFacility(body.getFactId());
+		if(facility.getFactId()!=null)
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		else {
+			if (accept != null && accept.contains("application/json")) {
+				fas.postFacility(body);
+				return new ResponseEntity<>(HttpStatus.CREATED); 
+			}
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 	}
-
 }

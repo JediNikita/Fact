@@ -93,6 +93,13 @@
 			<version>2.1.2.RELEASE</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure -->
+		<dependency>
+			<groupId>org.springframework.security.oauth.boot</groupId>
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+			<version>2.3.2.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -107,7 +114,7 @@
 				<configuration>
 					<schemaVersion>V2</schemaVersion>
 					<authType>azure_cli</authType>
-					<subscriptionId>40c44720-13d4-4944-9f08-50b0c16c445f</subscriptionId>
+					<subscriptionId>d8db702d-37ec-428b-8ae0-78e71624fe2c</subscriptionId>
 					<resourceGroup>fact-api-management</resourceGroup>
 					<appName>fact-api-management</appName>
 					<pricingTier>F1</pricingTier>

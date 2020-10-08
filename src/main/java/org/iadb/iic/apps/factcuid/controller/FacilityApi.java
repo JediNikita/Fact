@@ -25,8 +25,8 @@ public interface FacilityApi {
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Facility Details", response = RiskFacility.class),
-        @ApiResponse(code = 400, message = ""),
-        @ApiResponse(code = 404, message = "") })
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 404, message = "Facility Not Found") })
     @RequestMapping(value = "/facility/{facilityId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
@@ -39,8 +39,8 @@ public interface FacilityApi {
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Facility LGD", response = RiskFacilityLGD.class),
-        @ApiResponse(code = 400, message = ""),
-        @ApiResponse(code = 404, message = "") })
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 404, message = "Facility Not Found") })
     @RequestMapping(value = "/facility/{facilityId}/LGD",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
@@ -52,9 +52,9 @@ public interface FacilityApi {
         @Authorization(value = "apiKeyHeader"),
 @Authorization(value = "apiKeyQuery")    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = ""),
-        @ApiResponse(code = 400, message = ""),
-        @ApiResponse(code = 409, message = "") })
+        @ApiResponse(code = 201, message = "Facility Created"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 409, message = "Conflict") })
     @RequestMapping(value = "/facility",
         produces = { "application/json" }, 
         consumes = { "application/json" },

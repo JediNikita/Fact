@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 
 import io.swagger.annotations.*;
 
-import org.iadb.iic.apps.factcuid.model.Company;
 import org.iadb.iic.apps.factcuid.model.Project;
 import org.iadb.iic.apps.factcuid.service.ProjectApiService;
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,22 +52,26 @@ public class ProjectApiController implements ProjectApi {
 					return new ResponseEntity<Project>(objectMapper.readValue(new Gson().toJson(project), Project.class), HttpStatus.OK);
 				} catch (IOException e) {
 					log.error("Couldn't serialize response for content type application/json", e);
-					return new ResponseEntity<Project>(HttpStatus.INTERNAL_SERVER_ERROR);
+					return new ResponseEntity<Project>(HttpStatus.BAD_REQUEST);
 				}
 			}
 			else
-				return new ResponseEntity<Project>(HttpStatus.NOT_IMPLEMENTED);
+				return new ResponseEntity<Project>(HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@Override
 	public ResponseEntity<Void> postproject(@Valid Project body) {
 		String accept = request.getHeader("Accept");
-		if (accept != null && accept.contains("application/json")) {
-			pas.postProject(body);
-			return new ResponseEntity<>(HttpStatus.OK); 
+		Project project= pas.getProject(body.getProjId());
+		if(project.getProjId()==null)
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		else {
+			if (accept != null && accept.contains("application/json")) {
+				pas.postProject(body);
+				return new ResponseEntity<>(HttpStatus.OK); 
+			}
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 	}
-
 }

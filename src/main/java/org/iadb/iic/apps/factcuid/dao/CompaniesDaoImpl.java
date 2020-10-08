@@ -1,9 +1,10 @@
 package org.iadb.iic.apps.factcuid.dao;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
-import org.iadb.iic.apps.factcuid.dao.mapper.CompanyResultSetExtractor;
-import org.iadb.iic.apps.factcuid.dao.mapper.CompanyRowMapper;
+import org.iadb.iic.apps.factcuid.dao.mapper.CommonResultSetExtractor;
 import org.iadb.iic.apps.factcuid.model.Company;
 import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,23 +68,16 @@ public class CompaniesDaoImpl implements CompaniesDao {
 
 
 	@Override
-	public Company getCompanyById(String companyId) {
+	public Company getCompanyById(int companyId) {
 		String sql= "SELECT * FROM COMPANY C WHERE C.comp_id_pkey=?;";
-		Company comp=  jdbcTemplate.query(sql, new Object[] {companyId}, new CompanyResultSetExtractor());
-		return comp;
+		//Company comp=  jdbcTemplate.query(sql, new Object[] {companyId}, new CompanyResultSetExtractor());
+		List<Company> compList= jdbcTemplate.query(sql, new Object[] {companyId}, new CommonResultSetExtractor<Company>());
+		return null;
 	}
 
 
 	@Override
-	public void deleteCompany(String companyId) {
-		String sql= "DELETE C FROM COMPANY WHERE C.comp_id_number=?;";
-		int flag= jdbcTemplate.update(sql, new Object[] {companyId});
-		System.out.println(flag);
-	}
-
-
-	@Override
-	public CompanyFinancials getCompanyFinancials(String companyId) {
+	public CompanyFinancials getCompanyFinancials(int companyId) {
 		CompanyFinancials cf= new CompanyFinancials();
 		cf=cfdao.setPDDetails(companyId);
 		return cf;
@@ -91,7 +85,7 @@ public class CompaniesDaoImpl implements CompaniesDao {
 
 
 	@Override
-	public void update(String companyId, @Valid Company company) {
+	public void update(int companyId, @Valid Company company) {
 		String sql= "UPDATE COMPANY SET comp_id_pkey=? , comp_name=?, comp_id_number=?, comp_domicile_country_iso=? where comp_id_pkey=?";
 		
 		Object[] params= {company.getCompanyId(), company.getCompanyName(), company.getCompanyIdNumber(), 

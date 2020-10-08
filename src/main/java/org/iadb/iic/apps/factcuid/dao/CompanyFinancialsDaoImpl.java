@@ -14,7 +14,7 @@ public class CompanyFinancialsDaoImpl implements CompanyFinancialsDao{
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public CompanyFinancials setPDDetails(String companyId) {
+	public CompanyFinancials setPDDetails(int companyId) {
 		CompanyFinancials cf= new CompanyFinancials();
 		String sql=  "SELECT * FROM pd where pd.COMPANY_ID=?;";
 		cf= jdbcTemplate.query(sql, new Object[] {companyId}, new PDResultSetExtractor());
@@ -23,7 +23,7 @@ public class CompanyFinancialsDaoImpl implements CompanyFinancialsDao{
 	}
 
 	@Override
-	public CompanyFinancials setFinancialStatementDetails(CompanyFinancials cf, String companyId) {
+	public CompanyFinancials setFinancialStatementDetails(CompanyFinancials cf, int companyId) {
 		String sql=  "SELECT * FROM FINANCIAL_STATEMENT FS where FS.COMPANY_ID=?;";
 		CompanyFinancials temp= jdbcTemplate.query(sql, new Object[] {companyId}, new FinancialStatementResultSetExtractor());
 		cf.setNetIncome(temp.getNetIncome());

@@ -8,13 +8,11 @@ public interface CompaniesDao {
 
 	int addCompany(@Valid Company company);
 
-	Company getCompanyById(String companyId);
+	Company getCompanyById(int companyId);
 
-	void deleteCompany(String companyId);
+	CompanyFinancials getCompanyFinancials(int companyId);
 
-	CompanyFinancials getCompanyFinancials(String companyId);
-
-	void update(String companyId, @Valid Company company);
+	void update(int companyId, @Valid Company company);
 
 
 }
