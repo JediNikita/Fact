@@ -1,0 +1,1424 @@
+{
+	"name": "factdatacopytoazure_task1",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_tx2",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_tx2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.tableName}"
+								},
+								{
+									"name": "Destination",
+									"value": ".@{item().destination.table}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "OdbcSource"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"validateDataConsistency": false,
+								"translator": {
+									"value": "@item().copyActivity.translator",
+									"type": "Expression"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_tx2",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_tableName": "@item().source.tableName"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_tx2",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_table": "@item().destination.table"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"tableName": "\"company\""
+						},
+						"destination": {
+							"table": "\"company\""
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "comp_id_pkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_id_pkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_elmt_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_elmt_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_usgrp_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_usgrp_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_portfolio",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_portfolio",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_model",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_model",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_sector",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_sector",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_group_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_group_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_lock_mask",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_lock_mask",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_creation_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "comp_creation_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_creation_user_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_creation_user_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_modification_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "comp_modification_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_modification_user_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_modification_user_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_id_number",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_id_number",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_bankscope_id",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_bankscope_id",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_domicile_country_iso",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_domicile_country_iso",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_analyst_user_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_analyst_user_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_spread_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_spread_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_workflow_status",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_workflow_status",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_statement_key",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_statement_key",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_finance_sector",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_finance_sector",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_finance_sub_sector",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_finance_sub_sector",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_last_pd_rating",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "comp_last_pd_rating",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_layout_format",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_layout_format",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_has_archives",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_has_archives",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_has_approved_archives",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_has_approved_archives",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_file_to_import",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_file_to_import",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_govt_support_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_govt_support_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_govt_support_yesno",
+											"type": "String"
+										},
+										"sink": {
+											"name": "comp_govt_support_yesno",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_operation_country_iso",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_operation_country_iso",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "comp_construction_country_iso",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "comp_construction_country_iso",
+											"type": "Int32"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "\"facility\""
+						},
+						"destination": {
+							"table": "\"facility\""
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "fac_id_pkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_id_pkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_elmt_id_fkey",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_elmt_id_fkey",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_creation_user_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_creation_user_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_creation_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "fac_creation_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_modification_user_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_modification_user_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_modification_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "fac_modification_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_lock_mask",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_lock_mask",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_usgrp_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_usgrp_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_senpath_proj_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_senpath_proj_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_colpath_proj_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_colpath_proj_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_description",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_path",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_path",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_number",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_number",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_subsector_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_subsector_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_sentype_colpath",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_sentype_colpath",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_sentype_senpath",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_sentype_senpath",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_debt_below_percent",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_debt_below_percent",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_ccf_percent",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_ccf_percent",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_ead",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_ead",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_outstanding",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_outstanding",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_limit",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_limit",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_base_lgd",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_base_lgd",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_senpath_guar_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_senpath_guar_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_colpath_col_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_colpath_col_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_override_frr",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_override_frr",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_colpath_guar_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_colpath_guar_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_guar_cov_percent",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_guar_cov_percent",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_final_lgd",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_final_lgd",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_total_assets",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_total_assets",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_total_liab",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_total_liab",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_total_senior_liab",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_total_senior_liab",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_asset_coverage_ratio",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_asset_coverage_ratio",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_adjusted_base_lgd",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_adjusted_base_lgd",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_frr",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_frr",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_initial_pac_base_lgd",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_initial_pac_base_lgd",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_override_justification",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_override_justification",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_comp_final_pd_rating",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_comp_final_pd_rating",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_pd_to_update",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_pd_to_update",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_final_grade",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_final_grade",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_final_grade_pct",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_final_grade_pct",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_final_grade_override",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_final_grade_override",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_opus_id",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_opus_id",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_loan_number",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_loan_number",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_opus_amount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_opus_amount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_nopath_proj_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_nopath_proj_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_impaired_loan",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fac_impaired_loan",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_specific_loss",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_specific_loss",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_last_approved_lgd",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "fac_last_approved_lgd",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_last_approved_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "fac_last_approved_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "fac_last_approver",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "fac_last_approver",
+											"type": "Int32"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "\"financial_statement\""
+						},
+						"destination": {
+							"table": "\"financial_statement\""
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "COMPANY_NAME",
+											"type": "String"
+										},
+										"sink": {
+											"name": "COMPANY_NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "COMPANY_ID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "COMPANY_ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "FINANCIAL_TYPE",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FINANCIAL_TYPE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "FINANCIAL_VALUE",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "FINANCIAL_VALUE",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "PERIOD",
+											"type": "String"
+										},
+										"sink": {
+											"name": "PERIOD",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PERIOD_LENGTH",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "PERIOD_LENGTH",
+											"type": "Int32"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "\"pd\""
+						},
+						"destination": {
+							"table": "\"pd\""
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "COMPANY_NAME",
+											"type": "String"
+										},
+										"sink": {
+											"name": "COMPANY_NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "COMPANY_ID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "COMPANY_ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LAST_PD_RATING",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LAST_PD_RATING",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CURRENT_PERC_FOR_PD_GRADE",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CURRENT_PERC_FOR_PD_GRADE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "APPROVED_DATETIME",
+											"type": "String"
+										},
+										"sink": {
+											"name": "APPROVED_DATETIME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "EXPIRATION_DATE",
+											"type": "String"
+										},
+										"sink": {
+											"name": "EXPIRATION_DATE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PD_IN_PROCESS",
+											"type": "String"
+										},
+										"sink": {
+											"name": "PD_IN_PROCESS",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "FACT_PD_STATUS",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FACT_PD_STATUS",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "IS_EXPIRED",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "IS_EXPIRED",
+											"type": "Int32"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "\"project\""
+						},
+						"destination": {
+							"table": "\"project\""
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "proj_id_pkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_id_pkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_elmt_id_fkey",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_elmt_id_fkey",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_creation_user_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_creation_user_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_creation_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "proj_creation_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_modification_user_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_modification_user_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_modification_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "proj_modification_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_lock_mask",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_lock_mask",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_usgrp_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_usgrp_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_comp_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_comp_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_number",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_number",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_active_status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_active_status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_colpath_juris_country_iso",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_colpath_juris_country_iso",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_senpath_juris_country_iso",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_senpath_juris_country_iso",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_analysis_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "proj_analysis_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_sector_fac_colpath",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_sector_fac_colpath",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_sector_fac_senpath",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_sector_fac_senpath",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_historical_project_id_fkey",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_historical_project_id_fkey",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_comp_final_pd_rating",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "proj_comp_final_pd_rating",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_is_historical",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_is_historical",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_operation_number",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_operation_number",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_opus_sector",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_opus_sector",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_opus_section",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_opus_section",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_opus_other_comp_count",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "proj_opus_other_comp_count",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "proj_maestro_creator_id_fkey",
+											"type": "String"
+										},
+										"sink": {
+											"name": "proj_maestro_creator_id_fkey",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
