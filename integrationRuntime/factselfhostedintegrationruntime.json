@@ -1,0 +1,6 @@
+{
+	"name": "factselfhostedintegrationruntime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
