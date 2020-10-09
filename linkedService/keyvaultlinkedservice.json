@@ -1,0 +1,10 @@
+{
+	"name": "keyvaultlinkedservice",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://fact-api-keyvault.vault.azure.net/"
+		}
+	}
+}
