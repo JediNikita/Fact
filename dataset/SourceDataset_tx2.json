@@ -1,0 +1,23 @@
+{
+	"name": "SourceDataset_tx2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "factodbclinkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_tableName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "OdbcTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().cw_tableName",
+				"type": "Expression"
+			}
+		}
+	}
+}

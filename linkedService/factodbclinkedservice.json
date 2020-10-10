@@ -1,0 +1,21 @@
+{
+	"name": "factodbclinkedservice",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Odbc",
+		"typeProperties": {
+			"connectionString": {
+				"type": "SecureString",
+				"value": "**********"
+			},
+			"authenticationType": "Basic",
+			"userName": "factadmin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3MjZlZjQ0Yi1mMDg3LTRmMzctODYyNy1kYjAyMWUxNTA1YzYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "factselfhostedintegrationruntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
