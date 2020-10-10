@@ -1,5 +1,6 @@
 package org.iadb.iic.apps.factcuid;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +15,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		, "org.iadb.iic.apps.factcuid.dao", "org.iadb.iic.apps.factcuid.config"})
 public class FactCUIDApplication {
 
+	@Value("${connectionString}")
+	private String connectionString; 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(FactCUIDApplication.class, args);
 	}
