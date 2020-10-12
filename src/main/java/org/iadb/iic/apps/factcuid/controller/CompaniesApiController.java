@@ -3,6 +3,8 @@ package org.iadb.iic.apps.factcuid.controller;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import org.iadb.iic.apps.factcuid.config.EncryptedDriverManagerDataSource;
 import org.iadb.iic.apps.factcuid.model.Company;
 import org.iadb.iic.apps.factcuid.model.CompanyFinancials;
 import org.iadb.iic.apps.factcuid.service.CompaniesApiService;
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -32,7 +35,14 @@ public class CompaniesApiController implements CompaniesApi {
 		this.objectMapper = objectMapper;
 		this.request = request;
 	}
-
+	
+	@RequestMapping("/")
+	public void showHello()
+	{	
+		EncryptedDriverManagerDataSource edmds= new EncryptedDriverManagerDataSource();
+		System.out.println(edmds.getUsername());
+	}
+	
 	@Override
 	public ResponseEntity<Company> getCompany(int companyId) {
 		String accept = request.getHeader("Accept");
