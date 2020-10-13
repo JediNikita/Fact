@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.security.keyvault.secrets.SecretClient;
@@ -19,13 +20,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		, "org.iadb.iic.apps.factcuid.dao", "org.iadb.iic.apps.factcuid.config"})
 public class FactCUIDApplication {
 
-	
-	
+
+
 	public static void main(String[] args) {
-		
+
 		SpringApplication.run(FactCUIDApplication.class, args);
-		
-		
+
+
 	}
+
 	
+
 }
+
+
